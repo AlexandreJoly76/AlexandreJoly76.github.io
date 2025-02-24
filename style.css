@@ -204,10 +204,11 @@ p{
     align-items: center;
     flex-wrap: wrap;
     gap: 32px;
+    margin-top: 50px;
 }
 
 .card{
-    margin-top: 178px;
+    margin-top: 80px;
     width: 40%;
     height: 50%;
     background-color: rgba(27,26,31, 0.5);
