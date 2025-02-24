@@ -1,0 +1,252 @@
+@font-face {
+    font-family: 'londrina';
+    src: url('./fonts/LondrinaSolid-Regular.ttf') format('truetype');
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.nav{
+    background-color: #201A2E;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    
+}
+.navmenu{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+body{
+    background: url("./assets/img/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+
+}
+
+.bluecolor{
+    color: #00C9F6;
+    font-family: 'londrina', sans-serif;
+    letter-spacing: 4px;
+}
+
+.text{
+    color:#FFFFFF;
+    font-family: 'londrina', sans-serif;
+    font-size: 20px;
+}
+
+.name{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    letter-spacing: 4px;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #201A2E;
+    display: flex;
+    justify-content: space-around;
+    gap: 48px;
+    font-family: 'londrina', sans-serif;
+    color: #FFFFFF;
+}
+a{
+    text-decoration: none;
+    color: #FFFFFF;
+    transition: all ease 0.4s;
+}
+
+a:hover{
+    color: #00C9F6;
+}
+
+.presentationCard{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 178px;
+    height: 50%;
+    width: 50%;
+    background-color: rgba(27,26,31, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px 30px;
+    gap: 110px;
+
+    .imgProfil{
+        width: 244px;
+        height: 244px;
+        border-radius: 20px;
+        transform: scaleX(-1);
+    }
+}
+
+.projects{
+    display: flex;
+    justify-content: center;
+    margin-top: 178px;
+    height: 10%;
+    width: 30%;
+    background-color: rgba(27,26,31, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px 14px;
+}
+.projectSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+}
+
+#home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.presentationText{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    gap: 32px;
+}
+
+h2{
+    font-weight: 400;
+    font-size: 32px;
+    color: #FFFFFF;
+    font-family: 'londrina', sans-serif;
+    margin: 0;
+}
+.middle{
+    opacity: 0.5;
+    font-family: 'londrina', sans-serif;
+}
+
+.Resume{
+    font-family: 'londrina', sans-serif;
+    font-size: 20px;
+    color: #FFFFFF;
+    background-color: #00C9F6;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 10px 20px;
+    border: none;
+    transition: all ease 0.4s;
+    cursor: pointer;
+    text-align: center;
+    
+}
+.Resume:hover{
+    background-color: #FFFFFF;
+    color: black;
+    a{
+        color: black;
+    }
+}
+
+p{
+    margin:0;
+}
+
+.skills{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#skills{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.blue{
+    color: #00C9F6;
+}
+
+.icon{
+    display: flex;
+    justify-content: center;
+    width: 83px;
+    height: 49px;
+}
+
+.icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+.cardProjects{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+.card{
+    margin-top: 178px;
+    width: 40%;
+    height: 50%;
+    background-color: rgba(27,26,31, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding: 20px 20px;
+}
+
+h3{
+    font-weight: 400;
+    color: #FFFFFF;
+    font-family: 'londrina', sans-serif;
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    img{
+        width: 100%;
+        height: 100%;
+        border-radius: 5px
+
+    }
+    span{
+        color: #FFFFFF;
+        font-family: 'londrina', sans-serif;
+        font-size: 14px;
+        background-color: #2a3133;
+        border-radius: 10px;
+        padding: 6px 6px;
+
+    }
+}
+
+.git{
+    width: auto;
+}
