@@ -73,8 +73,21 @@ a{
 a:hover{
     color: #00C9F6;
 }
+.presentationCard {
+    opacity: 0; /* Caché au départ */
+    transform: translateY(30px); /* Décalé vers le bas */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.presentationCard.show {
+    opacity: 1; /* Devient visible */
+    transform: translateY(0); /* Remonte à sa position normale */
+}
+
+
 
 .presentationCard{
+
     display: flex;
     justify-content: flex-start;
     margin-top: 178px;
@@ -142,6 +155,7 @@ h2{
 .Resume{
     font-family: 'londrina', sans-serif;
     font-size: 20px;
+    box-sizing: border-box;
     color: #FFFFFF;
     background-color: #00C9F6;
     border-radius: 20px;
@@ -151,14 +165,13 @@ h2{
     transition: all ease 0.4s;
     cursor: pointer;
     text-align: center;
+    border: 1px solid transparent;
     
 }
 .Resume:hover{
     background-color: #FFFFFF;
     color: black;
-    a{
-        color: black;
-    }
+    border: 1px solid black;
 }
 
 p{
@@ -207,16 +220,6 @@ p{
     margin-top: 50px;
 }
 
-.card{
-    margin-top: 80px;
-    width: 40%;
-    height: 50%;
-    background-color: rgba(27,26,31, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 40px;
-    padding: 20px 20px;
-}
-
 h3{
     font-weight: 400;
     color: #FFFFFF;
@@ -231,11 +234,18 @@ h3{
     display: flex;
     flex-direction: column;
     gap: 18px;
+    margin-top: 80px;
+    width: 40%;
+    height: 50%;
+    background-color: rgba(27,26,31, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding: 20px 20px;
     img{
         width: 100%;
         height: 100%;
-        border-radius: 5px
-
+        border-radius: 20px
+        
     }
     span{
         color: #FFFFFF;
@@ -250,4 +260,64 @@ h3{
 
 .git{
     width: auto;
+}
+
+.cardContact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    width: 100%;
+}
+
+.follow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    height: 50%;
+    background-color: rgba(27,26,31, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding: 20px 20px;
+    gap: 58px;
+}
+
+.social{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.footer{
+    display: flex;
+    background-color: #201A2E;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    z-index: 100;
+    height: 40px;
+    align-items: center;
+    padding: 0 16px;
+    margin-top: 80px;
+    
+}
+
+.namefooter{
+    font-size: 16px;
+    font-family: 'londrina', sans-serif;
+    color: #00C9F6;
+}
+.designed{
+    font-size: 16px;
+    font-family: 'londrina', sans-serif;
+    color: #FFFFFF;
+}
+
+.social{
+    a:hover {
+        transform: scale(1.1);
+    }
 }
