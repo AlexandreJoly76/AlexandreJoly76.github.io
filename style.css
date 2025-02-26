@@ -106,8 +106,8 @@ a:hover{
     gap: 110px;
 
     .imgProfil{
-        width: 20%;
-        height: 20%;
+        width: 30%;
+        height: 30%;
         border-radius: 20px;
         transform: scaleX(-1);
     }
@@ -328,16 +328,70 @@ h3{
     }
 }
 
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .presentationCard {
+        margin-top: 100px;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        .imgProfil {
+            width: 30%;
+            height: 30%;
+        }
+        .presentationText {
+            width: 80%;
+        }
+    }
+    .projects {
+        margin-top: 80px;
+        width: 80%;
+        padding: 20px 14px;
+    }
+    .cardProjects {
+        width: 100%;
+        gap: 16px;
+    }
+    .card {
+        width: 80%;
+        padding: 20px 14px;
+        gap: 16px;
+    }
+    .follow {
+        width: 80%;
+        padding: 20px 14px;
+        gap: 32px;
+    }
+
+    .social {
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+    .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+}
+
 
 @media screen and (max-width: 768px){
     .nav{
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         gap: 16px;
     }
+
+    .name{
+        display:none;
+    }
     .navmenu{
-        display: block
+        display:block;
+        position: relative;
     }
 
     .presentationCard{
@@ -346,8 +400,8 @@ h3{
         flex-wrap: wrap;
         justify-content: center;
         .imgProfil{
-            width: 50%;
-            height: 50%;
+            width: 30%;
+            height: 30%;
         }
         .presentationText{
             width: 80%;
