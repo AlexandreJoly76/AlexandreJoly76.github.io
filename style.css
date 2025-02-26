@@ -7,7 +7,10 @@ html{
     scroll-behavior: smooth;
 }
 
+
+
 .nav{
+    display: flex;
     background-color: #201A2E;
     position: sticky;
     top: 0;
@@ -100,8 +103,8 @@ a:hover{
     gap: 110px;
 
     .imgProfil{
-        width: 244px;
-        height: 244px;
+        width: 30%;
+        height: 30%;
         border-radius: 20px;
         transform: scaleX(-1);
     }
@@ -320,4 +323,64 @@ h3{
     a:hover {
         transform: scale(1.1);
     }
+}
+
+
+@media screen and (max-width: 768px){
+    .nav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+    .navmenu{
+        display: none;
+    }
+
+    .presentationCard{
+        margin-top: 100px;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        .imgProfil{
+            width: 50%;
+            height: 50%;
+        }
+        .presentationText{
+            width: 80%;
+        }
+    }
+    .projects{
+        margin-top: 80px;
+        width: 80%;
+        padding: 20px 14px;
+    }
+    .cardProjects{
+        width: 100%;
+        gap: 16px;
+    }
+    .card{
+        width: 80%;
+        padding: 20px 14px;
+        gap: 16px;
+    }
+    .follow{
+        width: 80%;
+        padding: 20px 14px;
+        gap: 32px;
+    }
+
+    .social{
+        img{
+            width: 50px;
+            height: 50px;
+        }
+    }
+    .footer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+    
 }
