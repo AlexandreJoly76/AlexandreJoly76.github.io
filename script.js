@@ -39,17 +39,17 @@ cardOne.addEventListener("click", function () {
 let cardTwo = document.getElementById("2");
 
 cardTwo.addEventListener("click", function () {
-  window.open("https://github.com/AlexandreJoly76/GroupieTracker", "_blank");
-});
-
-let cardThree = document.getElementById("3");
-
-cardThree.addEventListener("click", function () {
   window.open(
     "https://github.com/AlexandreJoly76/MakeYourGame-SpaceInvader",
     "_blank"
   );
 });
+let cardThree = document.getElementById("3");
+
+cardThree.addEventListener("click", function () {
+  window.open("https://github.com/AlexandreJoly76/GroupieTracker", "_blank");
+});
+
 
 let cardFour = document.getElementById("4");
 
