@@ -350,7 +350,7 @@ h3{
     }
     .projects {
         margin-top: 80px;
-        width: 80%;
+        width:30% ;
         padding: 20px 14px;
     }
     .cardProjects {
@@ -363,7 +363,7 @@ h3{
         gap: 16px;
     }
     .follow {
-        width: 80%;
+        width: fit-content;
         padding: 20px 14px;
         gap: 32px;
     }
@@ -414,7 +414,7 @@ h3{
     }
     .projects{
         margin-top: 80px;
-        width: 80%;
+        width: 30%;
         padding: 20px 14px;
     }
     .cardProjects{
@@ -427,7 +427,7 @@ h3{
         gap: 16px;
     }
     .follow{
-        width: 80%;
+        width: fit-content;
         padding: 20px 14px;
         gap: 32px;
     }
