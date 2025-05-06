@@ -264,7 +264,9 @@ h3 {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 201, 246, 0.25); /* Bordure avec la couleur bleu #00C9F6 */
     position: relative;
-    /* Suppression de cursor: pointer */
+    display: flex;
+    flex-direction: column;
+    height: auto; /* Hauteur automatique basée sur le contenu */
 }
 
 .card:hover {
@@ -289,8 +291,11 @@ h3 {
     opacity: 1;
 }
 
+/* Redimensionnement du conteneur d'image pour une meilleure visibilité */
 .card-image-container {
-    height: 360px; /* Conteneur d'image beaucoup plus grand */
+    height: 450px !important; /* Hauteur fixe plus grande pour une meilleure visibilité */
+    min-height: unset !important; /* Suppression des contraintes min/max */
+    max-height: unset !important;
     overflow: hidden;
     position: relative;
     background-color: #0a0a10; /* Fond plus sombre pour améliorer le contraste */
@@ -327,22 +332,17 @@ h3 {
     pointer-events: none;
 }
 
+/* Optimisation de l'affichage des images de projet */
 .card-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
-    /* Paramètres optimisés qui préservent la qualité de l'image */
+    object-fit: contain !important; /* Changement à 'contain' pour voir l'image complète sans déformation */
+    object-position: center !important; /* Centrage complet de l'image */
+    background-color: #0a0a10; /* Fond pour les images avec transparence */
+    padding: 0; /* Suppression de tout padding */
+    transition: filter 0.4s ease-out !important;
+    transform: none !important;
     image-rendering: auto;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    filter: brightness(1.05) contrast(1.08) saturate(1.1); /* Valeurs douces qui préservent les détails */
-    will-change: transform;
-    transition: all 0.4s ease-out;
-    /* Suppression des propriétés qui peuvent dégrader la qualité */
-    -ms-interpolation-mode: bicubic;
-    transform: none !important; /* Force l'absence de transformation */
-    transition: filter 0.4s ease-out !important; /* Transition uniquement sur le filtre, pas la transformation */
 }
 
 /* Désactivation des effets qui causent une perte de qualité au survol */
@@ -352,16 +352,12 @@ h3 {
     transform: none !important; /* Supprime le zoom/scale */
 }
 
-/* Ajustements spécifiques par type d'image si nécessaire */
-.card:nth-child(4) .card-image-container img {
-    object-position: top center; /* Conserver le positionnement pour Groupie Tracker */
-}
-
-/* Repositionnement du conteneur de contenu */
+/* Ajustement du contenu de la carte pour équilibrer la présentation */
 .card-content {
     padding: 25px;
     background: linear-gradient(0deg, rgba(25, 25, 35, 0.95) 0%, rgba(30, 30, 40, 0.9) 100%);
     position: relative;
+    flex: 0 0 auto; /* Le contenu ne s'étire pas */
 }
 
 .card-content h3 {
@@ -757,7 +753,7 @@ textarea {
     }
     
     .card-image-container {
-        height: 330px;
+        height: 400px !important;
     }
 }
 
@@ -777,7 +773,7 @@ textarea {
     }
     
     .card-image-container {
-        height: 280px;
+        height: 350px !important;
     }
 }
 
@@ -788,7 +784,7 @@ textarea {
     }
     
     .card-image-container {
-        height: 260px;
+        height: 300px !important;
     }
 }
 
@@ -853,7 +849,7 @@ textarea {
     }
 
     .card-image-container {
-        height: 300px; /* Plus grand sur mobile pour mieux voir les images */
+        height: 350px !important; /* Plus grand sur mobile pour mieux voir les images */
     }
 
     .follow {
@@ -895,7 +891,7 @@ textarea {
     }
     
     .card-image-container {
-        height: 220px;
+        height: 300px !important;
     }
 
     .git {
