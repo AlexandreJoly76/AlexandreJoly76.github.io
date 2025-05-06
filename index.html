@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexandre Joly | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/css/animations.css">
-    <!-- Solution de secours pour le fond d'écran -->
-    <link rel="stylesheet" href="assets/css/background-fix.css">
-    <link rel="stylesheet" href="assets/css/image-quality.css"> <!-- Nouvel ajout -->
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="description" content="Portfolio de Alexandre Joly, développeur web fullstack">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,8 +18,8 @@
     
     <nav class="nav">
         <div class="name">
-            <h1 class="bluecolor">ALEXANDRE</h1>
-            <h1 class="text">JOLY</h1>
+            <h1 class="name-primary">ALEXANDRE</h1>
+            <h1 class="name-secondary">JOLY</h1>
         </div>
         <div class="navmenu">
             <ul>
@@ -41,89 +37,86 @@
     </nav>
 
     <section id="home">
-        <div class="presentationCard">
-            <img class="imgProfil" src="./assets/img/profil.png" alt="Photo de profil">
-            <div class="presentationText">
+        <div class="presentation-card">
+            <img class="profile-img" src="./assets/img/profil.png" alt="Photo de profil">
+            <div class="presentation-text">
                 <div>
-                    <h2>Hi, i'm <span class="blue">Alexandre Joly</span></h2>
-                    <h2 class="middle typewriter">I am a Full-Stack Developer in training at Zone01</h2>
+                    <h2>Hi, i'm <span class="highlight">Alexandre Joly</span></h2>
+                    <h2 class="subtitle typewriter">I am a Full-Stack Developer in training at Zone01</h2>
                     <p>Passionate about building dynamic and efficient web applications. I am constantly learning and improving my skills in both front-end and back-end development.</p>
-                    <p style="margin-top: 15px;">I am currently looking for an apprenticeship to gain hands-on experience and further develop my skills as a Full-Stack Developer.</p>
+                    <p class="margin-top">I am currently looking for an apprenticeship to gain hands-on experience and further develop my skills as a Full-Stack Developer.</p>
                 </div>
                 <div class="cta-buttons">
-                    <a href="./assets/cv/Cv.pdf" target="_blank" rel="noopener noreferrer" class="Resume">Download CV</a>
-                    <a href="#contact" class="contact-btn">Contact Me <i class="fas fa-arrow-right"></i></a>
+                    <a href="./assets/cv/Cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">Download CV</a>
+                    <a href="#contact" class="btn-secondary">Contact Me <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="animate-on-scroll">
-        <div class="skills">
-            <div class="projects">
-                <h2>Mes <span class="blue">Compétences</span></h2>
+    <section id="skills" class="animate-section">
+        <div class="skills-content">
+            <div class="section-title">
+                <h2>Mes <span class="highlight">Compétences</span></h2>
             </div>
             
             <div class="skills-container">
-                <!-- Frontend Category -->
                 <div class="skill-category">
                     <h3 class="category-title">Frontend</h3>
-                    <div class="icons">
-                        <div class="icon">
+                    <div class="skills-grid">
+                        <div class="skill-item">
                             <img src="./assets/svg/HTML.svg" alt="HTML logo">
                             <span class="tech-name">HTML</span>
                         </div>
-                        <div class="icon">
+                        <div class="skill-item">
                             <img src="./assets/svg/CSS.svg" alt="CSS logo">
                             <span class="tech-name">CSS</span>
                         </div>
-                        <div class="icon">
+                        <div class="skill-item">
                             <img src="./assets/svg/Javascript.svg" alt="JavaScript logo">
                             <span class="tech-name">JavaScript</span>
                         </div>
-                        <div class="icon">
+                        <div class="skill-item">
                             <img src="./assets/svg/React.svg" alt="React logo">
                             <span class="tech-name">React</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Backend Category -->
                 <div class="skill-category">
                     <h3 class="category-title">Backend</h3>
-                    <div class="icons">
-                        <div class="icon">
+                    <div class="skills-grid">
+                        <div class="skill-item">
                             <img src="./assets/svg/Go.svg" alt="Go logo">
                             <span class="tech-name">Go</span>
                         </div>
-                        <div class="icon">
+                        <div class="skill-item">
                             <img src="./assets/svg/C.svg" alt="C logo">
                             <span class="tech-name">C</span>
                         </div>
-                        <div class="icon">
+                        <div class="skill-item">
                             <img src="./assets/svg/Rails.svg" alt="Ruby on Rails logo">
-                            <span class="tech-name">Ruby on Rails</span>
-                        </div>
-                        <div class="icon">
-                            <img src="./assets/svg/Docker.svg" alt="Docker logo">
-                            <span class="tech-name">Docker</span>
+                            <span class="tech-name">Rails</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Tools Category -->
                 <div class="skill-category">
                     <h3 class="category-title">Outils</h3>
-                    <div class="icons">
-                        <div class="icon">
+                    <div class="skills-grid">
+                        <div class="skill-item">
                             <img src="./assets/svg/Github.svg" alt="Github logo">
                             <span class="tech-name">GitHub</span>
                         </div>
-                        <div class="icon">
+                        <div class="skill-item">
                             <img src="./assets/svg/Figma.svg" alt="Figma logo">
                             <span class="tech-name">Figma</span>
                         </div>
-                        <div class="icon">
+                        <div class="skill-item">
+                            <img src="./assets/svg/Docker.svg" alt="Docker logo">
+                            <span class="tech-name">Docker</span>
+                        </div>
+                        <div class="skill-item">
                             <img src="./assets/svg/Taiga.svg" alt="Taiga logo">
                             <span class="tech-name">Taiga</span>
                         </div>
@@ -133,13 +126,13 @@
         </div>
     </section>
 
-    <section id="projects" class="projectSection">
-        <div class="projects animate-on-scroll">
-            <h2>My <span class="blue">Projects</span></h2>
+    <section id="projects" class="project-section">
+        <div class="section-title animate-section">
+            <h2>My <span class="highlight">Projects</span></h2>
         </div>
-        <div class="cardProjects">
-            <div class="card">
-                <div class="card-image-container">
+        <div class="projects-grid">
+            <div class="project-card" id="project1">
+                <div class="card-image">
                     <img src="./assets/img/Aniverse.png" alt="Aniverse Forum">
                 </div>
                 <div class="card-content">
@@ -152,14 +145,15 @@
                         <span>Docker</span>
                     </div>
                     <div class="card-links">
-                        <a target="_blank" href="https://github.com/AlexandreJoly76/forum-go" class="git">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/forum-go" class="github-link">
                             <img src="./assets/svg/Github.svg" alt="Github logo">
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-image-container">
+            
+            <div class="project-card" id="project2">
+                <div class="card-image">
                     <img src="./assets/img/Makeyourgame.png" alt="Make Your Game">
                 </div>
                 <div class="card-content">
@@ -170,14 +164,15 @@
                         <span>HTML/CSS</span>
                     </div>
                     <div class="card-links">
-                        <a target="_blank" href="https://github.com/AlexandreJoly76/MakeYourGame-SpaceInvader" class="git">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/MakeYourGame-SpaceInvader" class="github-link">
                             <img src="./assets/svg/Github.svg" alt="Github logo">
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-image-container">
+            
+            <div class="project-card" id="project3">
+                <div class="card-image">
                     <img src="./assets/img/RealTime.png" alt="Real Time Forum">
                 </div>
                 <div class="card-content">
@@ -191,14 +186,15 @@
                         <span>HTML/CSS</span>
                     </div>
                     <div class="card-links">
-                        <a target="_blank" href="https://github.com/AlexandreJoly76/real-time-forum" class="git">
-                            <img src="./assets/svg/Github.svg" alt="Github logo" width="30">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/real-time-forum" class="github-link">
+                            <img src="./assets/svg/Github.svg" alt="Github logo">
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-image-container">
+            
+            <div class="project-card" id="project4">
+                <div class="card-image">
                     <img src="./assets/img/groupieTracker.png" alt="Groupie Tracker">
                 </div>
                 <div class="card-content">
@@ -211,14 +207,15 @@
                         <span>API</span>
                     </div>
                     <div class="card-links">
-                        <a  target="_blank" href="https://github.com/AlexandreJoly76/GroupieTracker" class="git">
-                            <img src="./assets/svg/Github.svg" alt="Github logo" width="30">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/GroupieTracker" class="github-link">
+                            <img src="./assets/svg/Github.svg" alt="Github logo">
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-image-container">
+            
+            <div class="project-card" id="project5">
+                <div class="card-image">
                     <img src="./assets/img/Portefolio.png" alt="Portfolio">
                 </div>
                 <div class="card-content">
@@ -230,8 +227,8 @@
                         <span>UI/UX Design</span>
                     </div>
                     <div class="card-links">
-                        <a target="_blank" href="https://github.com/AlexandreJoly76/AlexandreJoly76.github.io" class="git">
-                            <img src="./assets/svg/Github.svg" alt="Github logo" width="30">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/AlexandreJoly76.github.io" class="github-link">
+                            <img src="./assets/svg/Github.svg" alt="Github logo">
                         </a>
                     </div>
                 </div>
@@ -240,12 +237,11 @@
     </section>
 
     <section id="contact">
-    <div class="cardContact animate-on-scroll">
-        <div class="follow">
-            <h2><span class="blue">Contact</span> Me</h2>
-            <p class="contact-intro">Let's connect and build something amazing together</p>
-            
-            <div class="contact-container">
+        <div class="contact-container animate-section">
+            <div class="contact-content">
+                <h2><span class="highlight">Contact</span> Me</h2>
+                <p class="contact-intro">Let's connect and build something amazing together</p>
+                
                 <div class="contact-cards">
                     <a href="https://github.com/AlexandreJoly76?tab=repositories" target="_blank" class="contact-card github-card">
                         <div class="contact-icon">
@@ -282,65 +278,15 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <footer class="footer">
         <div>
-            <span class="namefooter">ALEXANDRE JOLY</span>
-            <span class="designed"> | © 2023 Tous droits réservés</span>
+            <span class="footer-name">ALEXANDRE JOLY</span>
+            <span class="footer-text"> | © 2023 Tous droits réservés</span>
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/background-check.js"></script>
-    <script src="assets/js/image-enhancer.js"></script>
-    <script>
-        // Mode sombre/clair
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                const icon = this.querySelector('i');
-                if (icon && icon.classList.contains('fa-moon')) {
-                    icon.classList.replace('fa-moon', 'fa-sun');
-                } else if (icon) {
-                    icon.classList.replace('fa-sun', 'fa-moon');
-                }
-            });
-        }
-
-        // Animation des cartes au défilement
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.presentationCard, .card');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show');
-                    }
-                });
-            }, {threshold: 0.1});
-            
-            cards.forEach(card => {
-                observer.observe(card);
-            });
-
-            // Smooth scrolling pour les ancres
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        e.preventDefault();
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

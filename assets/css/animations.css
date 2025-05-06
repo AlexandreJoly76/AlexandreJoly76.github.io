@@ -94,33 +94,37 @@
 
 /* Animation améliorée pour les images */
 @keyframes enhanceImage {
-     0%, 50%, 100% {
+    0% {
         filter: brightness(1.08) contrast(1.12) saturate(1.15);
-        transform: none; /* Suppression du zoom */
+        transform: scale(1);
+    }
+    50% {
+        filter: brightness(1.12) contrast(1.15) saturate(1.2);
+        transform: scale(1.01); /* Très léger zoom */
+    }
+    100% {
+        filter: brightness(1.08) contrast(1.12) saturate(1.15);
+        transform: scale(1);
     }
 }
 
-/* Remplacement de l'animation enhanceImage par une version sans zoom */
+/* Remplacement de l'animation enhanceImage par une version plus douce */
 @keyframes enhanceImageSoft {
     0% {
         filter: brightness(1.05) contrast(1.08) saturate(1.1);
-        transform: none; /* Pas de transformation */
     }
     50% {
         filter: brightness(1.08) contrast(1.1) saturate(1.12);
-        transform: none; /* Pas de transformation */
     }
     100% {
         filter: brightness(1.05) contrast(1.08) saturate(1.1);
-        transform: none; /* Pas de transformation */
     }
 }
 
 /* L'animation est désactivée directement dans style.css pour préserver la qualité des images */
 
 .card:hover .card-image-container img {
-    animation: none;
-    transform: none; /* Force l'absence de transformation */
+    animation: enhanceImage 4s infinite ease-in-out;
 }
 
 /* Animation pour les icônes de compétences */

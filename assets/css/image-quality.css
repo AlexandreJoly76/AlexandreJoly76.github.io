@@ -1,19 +1,15 @@
 /**
- * Styles dédiés à l'amélioration de la qualité d'image
+ * Styles dédiés à l'amélioration de la qualité d'image - Code nettoyé
  */
 
 /* Optimisations de base pour toutes les images */
 img {
-    -ms-transform: translateZ(0);
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
 
 /* Améliorations spécifiques pour les images de carte */
 .card-image-container {
-    /* Effet subtil de bord lumineux */
     box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.1);
-    /* Transition douce pour les changements d'état */
     transition: all 0.4s ease-out;
 }
 
