@@ -1,161 +1,346 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Alexandre Joly, Full-Stack Developer in training at Zone01">
+    <title>Alexandre Joly | Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <title>Alexandre Joly</title>
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <!-- Solution de secours pour le fond d'écran -->
+    <link rel="stylesheet" href="assets/css/background-fix.css">
+    <link rel="stylesheet" href="assets/css/image-quality.css"> <!-- Nouvel ajout -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Portfolio de Alexandre Joly, développeur web fullstack">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Éléments de secours pour le fond d'écran -->
+    <div class="bg-check-1"></div>
+    <div class="bg-check-2"></div>
+    
     <nav class="nav">
         <div class="name">
-        <a href="#home"><span class="text">Alexandre</span></a>
-        <a href="#home"><span class="bluecolor">Joly</span></a>
+            <h1 class="bluecolor">ALEXANDRE</h1>
+            <h1 class="text">JOLY</h1>
         </div>
         <div class="navmenu">
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
+        <div class="theme-switch">
+            <button id="themeToggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </nav>
-        <section id="home">
-            <div class="presentationCard">
-                <img class="imgProfil" src="./assets/img/profil.png" alt="profil">
-                <div class="presentationText">
-                    <h2>
-                        <span>Hi, i’m</span>
-                        <br>
-                       <span class="bluecolor">Alexandre Joly</span>
-                    </h2>
-                    <p class="text">I am a Full-Stack Developer in training at Zone01</p>
-                    <p class="text middle">Passionate about building dynamic and efficient web applications. I am constantly learning and improving my skills in both front-end and back-end development.</p>
-                    <p class="text">I am currently looking for an apprenticeship to gain hands-on experience and further develop my skills as a Full-Stack Developer</p>
-                    <button class="Resume" id="Resume">Resume</button>
+
+    <section id="home">
+        <div class="presentationCard">
+            <img class="imgProfil" src="./assets/img/profil.png" alt="Photo de profil">
+            <div class="presentationText">
+                <div>
+                    <h2>Hi, i'm <span class="blue">Alexandre Joly</span></h2>
+                    <h2 class="middle typewriter">I am a Full-Stack Developer in training at Zone01</h2>
+                    <p>Passionate about building dynamic and efficient web applications. I am constantly learning and improving my skills in both front-end and back-end development.</p>
+                    <p style="margin-top: 15px;">I am currently looking for an apprenticeship to gain hands-on experience and further develop my skills as a Full-Stack Developer.</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="./assets/cv/Cv.pdf" target="_blank" rel="noopener noreferrer" class="Resume">Download CV</a>
+                    <a href="#contact" class="contact-btn">Contact Me <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-        </section>
-        <section id="skills">
-            <div class="skills presentationCard">
-                <h2 class="blue">Skills</h2>
-                <div class="icons">
-                <div class="icon">
-                <img src="./assets/svg/Github.svg"></img>
-                </div>
-                <div class="icon">
-                <img src="./assets/svg/HTML.svg"></img>
-                </div>
-                <div class="icon">
-                <img src="./assets/svg/CSS.svg"></img>
-                </div>
-                <div class="icon">
-                    <img src="./assets/svg/Figma.svg"></img>
-                </div>
-                <div class="icon">
-                <img src="./assets/svg/Javascript.svg"></img>
-                </div>
-                <div class="icon">
-                <img src="./assets/svg/Go.svg"></img>
-                </div>
-                <div class="icon">
-                <img src="./assets/svg/Sqlite.svg"></img>
-                </div>
-                <div class="icon">
-                <img src="./assets/svg/React.svg"></img>
-                </div>
-                <div class="icon">
-                <img src="./assets/svg/C.svg"></img>
-                </div>
-                <div class="icon">
-                <img src="./assets/svg/Taiga.svg"></img>
-                </div>
-            </div>
-            </div>
-        </section>
-        <section class="projectSection" id="projects">
+        </div>
+    </section>
+
+    <section id="skills" class="animate-on-scroll">
+        <div class="skills">
             <div class="projects">
-                <h2 class="blue">My projects</h2>
+                <h2>Mes <span class="blue">Compétences</span></h2>
             </div>
-        </section>
-        <section class="cardProjects">
-            <div class="card" id="1">
-                <img src="/assets/img/Aniverse.png" alt="image d'un forum">
-                <h3>Aniverse Forum</h3>
-                <div>
-                <span>Go</span>
-                <span>Javascript</span>
-                <span>Sqlite</span>
-                <span>HTML</span>
-                <span>CSS</span>
+            
+            <div class="skills-container">
+                <!-- Frontend Category -->
+                <div class="skill-category">
+                    <h3 class="category-title">Frontend</h3>
+                    <div class="icons">
+                        <div class="icon">
+                            <img src="./assets/svg/HTML.svg" alt="HTML logo">
+                            <span class="tech-name">HTML</span>
+                        </div>
+                        <div class="icon">
+                            <img src="./assets/svg/CSS.svg" alt="CSS logo">
+                            <span class="tech-name">CSS</span>
+                        </div>
+                        <div class="icon">
+                            <img src="./assets/svg/Javascript.svg" alt="JavaScript logo">
+                            <span class="tech-name">JavaScript</span>
+                        </div>
+                        <div class="icon">
+                            <img src="./assets/svg/React.svg" alt="React logo">
+                            <span class="tech-name">React</span>
+                        </div>
+                    </div>
                 </div>
-                <a target="_blank" class="Resume git" href="https://github.com/AlexandreJoly76/forum-go">Github repository</a>
-            </div>
-            <div class="card" id="2">
-                <img src="/assets/img/Makeyourgame.png" alt="image d'un jeu video">
-                <h3>Make your game : Space invader</h3>
-                <div>
-                    <span>Javascript</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
+                
+                <!-- Backend Category -->
+                <div class="skill-category">
+                    <h3 class="category-title">Backend</h3>
+                    <div class="icons">
+                        <div class="icon">
+                            <img src="./assets/svg/Go.svg" alt="Go logo">
+                            <span class="tech-name">Go</span>
+                        </div>
+                        <div class="icon">
+                            <img src="./assets/svg/C.svg" alt="C logo">
+                            <span class="tech-name">C</span>
+                        </div>
+                        <div class="icon">
+                            <img src="./assets/svg/Rails.svg" alt="Ruby on Rails logo">
+                            <span class="tech-name">Ruby on Rails</span>
+                        </div>
+                        <div class="icon">
+                            <img src="./assets/svg/Docker.svg" alt="Docker logo">
+                            <span class="tech-name">Docker</span>
+                        </div>
+                    </div>
                 </div>
-                <a target="_blank" href="https://github.com/AlexandreJoly76/MakeYourGame-SpaceInvader" class="Resume git">Github repository</a>
-            </div>
-            <div class="card" id="3">
-                <img src="/assets/img/RealTime.png" alt="image forum en temps réel">
-                <H3>Real Time Forum</H3>
-                <div>
-                    <span>Go</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>Sqlite</span>
-                    <span>Javascript</span>
-                </div>
-                <a target="_blank" href="https://github.com/dylanBourcier/real-time-forum" class="Resume git">Github repository</a>
-            </div>
-            <div class="card" id="4">
-                <img src="/assets/img/Portefolio.png" alt="image d'un portefolio">
-                <h3>Portefolio</h3>
-                <div>
-                    <span>Javascript</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                </div>
-                <a target="_blank" href="https://github.com/AlexandreJoly76/AlexandreJoly76.github.io" class="Resume git">Github repository</a>
-            </div> 
-            <div class="card" id="3">
-                <img src="/assets/img/groupieTracker.png" alt="image d'un site de music">
-                <H3>Groupie Tracker</H3>
-                <div>
-                    <span>Go</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>Javascript</span>
-                </div>
-                <a target="_blank" href="https://github.com/AlexandreJoly76/GroupieTracker" class="Resume git">Github repository</a>
-            </div>
-        </section>
-        <section class="projectSection" id="projects">
-            <div class="projects">
-                <h2 class="blue">Contact</h2>
-            </div>
-        </section>
-        <section class="cardContact">
-            <div class="follow">
-                <h2>Follow me :</h2>
-                <div class="social" id="contact">
-                    <a target="_blank" href="https://github.com/AlexandreJoly76"><img src="/assets/svg/Githubsocial.svg"></img></a>
-                    <a target="_blank" href="https://www.linkedin.com/in/alexandre-joly-90813733b/"><img src="/assets/svg/linkedin.svg"></img></a>
+                
+                <!-- Tools Category -->
+                <div class="skill-category">
+                    <h3 class="category-title">Outils</h3>
+                    <div class="icons">
+                        <div class="icon">
+                            <img src="./assets/svg/Github.svg" alt="Github logo">
+                            <span class="tech-name">GitHub</span>
+                        </div>
+                        <div class="icon">
+                            <img src="./assets/svg/Figma.svg" alt="Figma logo">
+                            <span class="tech-name">Figma</span>
+                        </div>
+                        <div class="icon">
+                            <img src="./assets/svg/Taiga.svg" alt="Taiga logo">
+                            <span class="tech-name">Taiga</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-        <footer>
-            <div class="footer">
-                <p class="designed">© 2025 Designed by <span class="namefooter">Alexandre Joly</span></p>
+        </div>
+    </section>
+
+    <section id="projects" class="projectSection">
+        <div class="projects animate-on-scroll">
+            <h2>My <span class="blue">Projects</span></h2>
+        </div>
+        <div class="cardProjects">
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="./assets/img/Aniverse.png" alt="Aniverse Forum">
+                </div>
+                <div class="card-content">
+                    <h3>Aniverse - Anime Forum</h3>
+                    <p>Community platform dedicated to anime and manga enthusiasts with discussion systems, sharing capabilities, and customizable profiles.</p>
+                    <div class="tags">
+                        <span>HTML/CSS</span>
+                        <span>JavaScript</span>
+                        <span>SQLite</span>
+                        <span>Docker</span>
+                    </div>
+                    <div class="card-links">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/forum-go" class="git">
+                            <img src="./assets/svg/Github.svg" alt="Github logo">
+                        </a>
+                    </div>
+                </div>
             </div>
-        </footer>
-    <script src="/script.js"></script>
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="./assets/img/Makeyourgame.png" alt="Make Your Game">
+                </div>
+                <div class="card-content">
+                    <h3>Make Your Game</h3>
+                    <p>Development of a JavaScript video game with fluid animations, score system, and multiple difficulty levels.</p>
+                    <div class="tags">
+                        <span>JavaScript</span>
+                        <span>HTML/CSS</span>
+                    </div>
+                    <div class="card-links">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/MakeYourGame-SpaceInvader" class="git">
+                            <img src="./assets/svg/Github.svg" alt="Github logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="./assets/img/RealTime.png" alt="Real Time Forum">
+                </div>
+                <div class="card-content">
+                    <h3>Real Time Forum</h3>
+                    <p>Real-time forum application with instant messaging, notifications, and dynamic content updates powered by WebSockets.</p>
+                    <div class="tags">
+                        <span>Go</span>
+                        <span>WebSockets</span>
+                        <span>JavaScript</span>
+                        <span>SQLite</span>
+                        <span>HTML/CSS</span>
+                    </div>
+                    <div class="card-links">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/real-time-forum" class="git">
+                            <img src="./assets/svg/Github.svg" alt="Github logo" width="30">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="./assets/img/groupieTracker.png" alt="Groupie Tracker">
+                </div>
+                <div class="card-content">
+                    <h3>Groupie Tracker</h3>
+                    <p>Web application that aggregates and displays data about musical artists, their albums, and tours from external APIs.</p>
+                    <div class="tags">
+                        <span>Go</span>
+                        <span>JavaScript</span>
+                        <span>HTML/CSS</span>
+                        <span>API</span>
+                    </div>
+                    <div class="card-links">
+                        <a  target="_blank" href="https://github.com/AlexandreJoly76/GroupieTracker" class="git">
+                            <img src="./assets/svg/Github.svg" alt="Github logo" width="30">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="./assets/img/Portefolio.png" alt="Portfolio">
+                </div>
+                <div class="card-content">
+                    <h3>Personal Portfolio</h3>
+                    <p>Design and development of this modern portfolio to showcase my projects and skills with an intuitive and responsive interface.</p>
+                    <div class="tags">
+                        <span>HTML/CSS</span>
+                        <span>JavaScript</span>
+                        <span>UI/UX Design</span>
+                    </div>
+                    <div class="card-links">
+                        <a target="_blank" href="https://github.com/AlexandreJoly76/AlexandreJoly76.github.io" class="git">
+                            <img src="./assets/svg/Github.svg" alt="Github logo" width="30">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+    <div class="cardContact animate-on-scroll">
+        <div class="follow">
+            <h2><span class="blue">Contact</span> Me</h2>
+            <p class="contact-intro">Let's connect and build something amazing together</p>
+            
+            <div class="contact-container">
+                <div class="contact-cards">
+                    <a href="https://github.com/AlexandreJoly76?tab=repositories" target="_blank" class="contact-card github-card">
+                        <div class="contact-icon">
+                            <img src="./assets/svg/Githubsocial.svg" alt="Github">
+                        </div>
+                        <div class="contact-info">
+                            <h3>GitHub</h3>
+                            <p>Check out my code</p>
+                        </div>
+                        <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/alexandre-joly-90813733b/" target="_blank" class="contact-card linkedin-card">
+                        <div class="contact-icon">
+                            <img src="./assets/svg/LinkedInsocial.svg" alt="LinkedIn">
+                        </div>
+                        <div class="contact-info">
+                            <h3>LinkedIn</h3>
+                            <p>Let's connect</p>
+                        </div>
+                        <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    
+                    <a href="mailto:alexandre.joly.76300@gmail.com" class="contact-card email-card">
+                        <div class="contact-icon">
+                            <img src="./assets/svg/Emailsocial.svg" alt="Email">
+                        </div>
+                        <div class="contact-info">
+                            <h3>Email</h3>
+                            <p>alexandre.joly.76300@gmail.com</p>
+                        </div>
+                        <span class="arrow-icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="footer">
+        <div>
+            <span class="namefooter">ALEXANDRE JOLY</span>
+            <span class="designed"> | © 2023 Tous droits réservés</span>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/background-check.js"></script>
+    <script src="assets/js/image-enhancer.js"></script>
+    <script>
+        // Mode sombre/clair
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                const icon = this.querySelector('i');
+                if (icon && icon.classList.contains('fa-moon')) {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                } else if (icon) {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+        }
+
+        // Animation des cartes au défilement
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.presentationCard, .card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {threshold: 0.1});
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Smooth scrolling pour les ancres
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

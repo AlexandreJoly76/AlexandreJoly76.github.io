@@ -1,0 +1,210 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Classe pour animer les éléments au scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation pour les cartes de projet */
+.card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:nth-child(1) { transition-delay: 0.1s; }
+.card:nth-child(2) { transition-delay: 0.2s; }
+.card:nth-child(3) { transition-delay: 0.3s; }
+.card:nth-child(4) { transition-delay: 0.4s; }
+.card:nth-child(5) { transition-delay: 0.5s; }
+
+/* Ajout d'une animation de brillance pour les bordures des cartes */
+@keyframes borderGlow {
+    0% {
+        border-color: rgba(0, 201, 246, 0.25);
+    }
+    50% {
+        border-color: rgba(0, 201, 246, 0.5);
+    }
+    100% {
+        border-color: rgba(0, 201, 246, 0.25);
+    }
+}
+
+.card:hover {
+    animation: borderGlow 2s infinite;
+}
+
+/* Amélioration visuelle pour les images des cartes */
+@keyframes subtleSharp {
+    0% {
+        filter: brightness(1) contrast(1);
+    }
+    50% {
+        filter: brightness(1.04) contrast(1.08);
+    }
+    100% {
+        filter: brightness(1) contrast(1);
+    }
+}
+
+/* Animation améliorée pour les images */
+@keyframes enhanceImage {
+    0% {
+        filter: brightness(1.08) contrast(1.12) saturate(1.15);
+        transform: scale(1);
+    }
+    50% {
+        filter: brightness(1.12) contrast(1.15) saturate(1.2);
+        transform: scale(1.01); /* Très léger zoom */
+    }
+    100% {
+        filter: brightness(1.08) contrast(1.12) saturate(1.15);
+        transform: scale(1);
+    }
+}
+
+/* Remplacement de l'animation enhanceImage par une version plus douce */
+@keyframes enhanceImageSoft {
+    0% {
+        filter: brightness(1.05) contrast(1.08) saturate(1.1);
+    }
+    50% {
+        filter: brightness(1.08) contrast(1.1) saturate(1.12);
+    }
+    100% {
+        filter: brightness(1.05) contrast(1.08) saturate(1.1);
+    }
+}
+
+/* L'animation est désactivée directement dans style.css pour préserver la qualité des images */
+
+.card:hover .card-image-container img {
+    animation: enhanceImage 4s infinite ease-in-out;
+}
+
+/* Animation pour les icônes de compétences */
+.icon {
+    transition: all 0.3s ease-in-out;
+}
+
+.icon:hover {
+    transform: translateY(-10px);
+}
+
+/* Animation pour les liens sociaux */
+.social a {
+    transition: all 0.3s ease;
+}
+
+.social a:hover {
+    transform: scale(1.15);
+    filter: brightness(1.1);
+}
+
+/* Animation pour le bouton CV */
+.Resume {
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.Resume::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.Resume:hover::after {
+    left: 0;
+}
+
+/* Animation pour la navigation */
+.nav {
+    transition: all 0.3s ease-in-out;
+}
+
+.nav.scrolled {
+    background-color: rgba(32, 26, 46, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    height: 70px;
+}
+
+/* Animation pour la carte de présentation */
+.presentationCard {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.presentationCard.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation pour le bouton GitHub */
+@keyframes githubPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 201, 246, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 201, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 201, 246, 0);
+    }
+}
+
+.git:hover {
+    animation: githubPulse 1.5s infinite;
+}

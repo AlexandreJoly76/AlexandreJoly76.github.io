@@ -3,6 +3,11 @@
     src: url('./fonts/LondrinaSolid-Regular.ttf') format('truetype');
 }
 
+/* Ajout des variables CSS manquantes */
+:root {
+    --border-radius-sm: 10px;
+    --transition: all 0.3s ease;
+}
 
 html, body {
     scroll-behavior: smooth;
@@ -11,9 +16,9 @@ html, body {
     height: 100%; /* Assure que la page utilise toute la hauteur */
     margin: 0;
     padding: 0;
-  }
+}
 
-.nav{
+.nav {
     display: flex;
     background-color: #201A2E;
     position: fixed;
@@ -25,42 +30,46 @@ html, body {
     justify-content: space-between;
     align-items: center;
     padding: 0 16px;
-    
 }
-.navmenu{
+
+.navmenu {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 
-body{
-    background: url("./assets/img/background.png");
+body {
+    background-color: #121212; /* Couleur de secours */
+    background-image: url("./assets/img/background.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     margin: 0;
-
+    color: #FFFFFF;
+    font-family: 'londrina', sans-serif;
 }
 
-.bluecolor{
+.bluecolor {
     color: #00C9F6;
     font-family: 'londrina', sans-serif;
     letter-spacing: 4px;
 }
 
-.text{
-    color:#FFFFFF;
+.text {
+    color: #FFFFFF;
     font-family: 'londrina', sans-serif;
     font-size: 20px;
 }
 
-.name{
+.name {
     display: flex;
     flex-direction: column;
     font-size: 20px;
     letter-spacing: 4px;
 }
 
-ul{
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -72,15 +81,17 @@ ul{
     font-family: 'londrina', sans-serif;
     color: #FFFFFF;
 }
-a{
+
+a {
     text-decoration: none;
     color: #FFFFFF;
     transition: all ease 0.4s;
 }
 
-a:hover{
+a:hover {
     color: #00C9F6;
 }
+
 .presentationCard {
     opacity: 0; /* Caché au départ */
     transform: translateY(30px); /* Décalé vers le bas */
@@ -92,10 +103,7 @@ a:hover{
     transform: translateY(0); /* Remonte à sa position normale */
 }
 
-
-
-.presentationCard{
-
+.presentationCard {
     display: flex;
     justify-content: flex-start;
     margin-top: 178px;
@@ -107,16 +115,16 @@ a:hover{
     border-radius: 20px;
     padding: 40px 30px;
     gap: 110px;
-
-    .imgProfil{
-        max-width: 30%;
-        height: 30%;
-        border-radius: 20px;
-        transform: scaleX(-1);
-    }
 }
 
-.projects{
+.imgProfil {
+    max-width: 30%;
+    height: 30%;
+    border-radius: 20px;
+    transform: scaleX(-1);
+}
+
+.projects {
     display: flex;
     justify-content: center;
     margin-top: 178px;
@@ -127,7 +135,8 @@ a:hover{
     border-radius: 20px;
     padding: 20px 14px;
 }
-.projectSection{
+
+.projectSection {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,13 +144,14 @@ a:hover{
     gap: 32px;
 }
 
-#home{
+#home {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.presentationText{
+
+.presentationText {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -149,19 +159,20 @@ a:hover{
     gap: 32px;
 }
 
-h2{
+h2 {
     font-weight: 400;
     font-size: 32px;
     color: #FFFFFF;
     font-family: 'londrina', sans-serif;
     margin: 0;
 }
-.middle{
+
+.middle {
     opacity: 0.5;
     font-family: 'londrina', sans-serif;
 }
 
-.Resume{
+.Resume {
     font-family: 'londrina', sans-serif;
     font-size: 20px;
     box-sizing: border-box;
@@ -175,43 +186,44 @@ h2{
     cursor: pointer;
     text-align: center;
     border: 1px solid transparent;
-    
 }
-.Resume:hover{
+
+.Resume:hover {
     background-color: #FFFFFF;
     color: black;
     border: 1px solid black;
 }
 
-p{
-    margin:0;
+p {
+    margin: 0;
 }
 
-.skills{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-#skills{
+.skills {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.blue{
+#skills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.blue {
     color: #00C9F6;
 }
 
-.icon{
+.icon {
     display: flex;
     justify-content: center;
     width: 83px;
     height: 49px;
 }
 
-.icons{
+.icons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,18 +232,19 @@ p{
     gap: 32px;
 }
 
-.cardProjects{
-    max-width: 1180px;
+.cardProjects {
+    max-width: 1700px; /* Augmentation de la largeur maximale du conteneur */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 35px; /* Plus d'espace entre les cartes */
     margin-top: 50px;
-    margin: auto;
+    margin: 50px auto; /* Centrage automatique et plus d'espace en haut/bas */
+    padding: 0 20px; /* Padding horizontal pour éviter de coller aux bords */
 }
 
-h3{
+h3 {
     font-weight: 400;
     color: #FFFFFF;
     font-family: 'londrina', sans-serif;
@@ -240,40 +253,290 @@ h3{
     font-size: 20px;
 }
 
+/* Améliorations pour les cartes de projet et correction de la superposition */
+.card {
+    background-color: rgba(30, 30, 42, 0.8);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin: 30px;
+    width: 600px; /* Cartes significativement plus larges */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 201, 246, 0.25); /* Bordure avec la couleur bleu #00C9F6 */
+    position: relative;
+    /* Suppression de cursor: pointer */
+}
 
-.card{
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 201, 246, 0.2);
+    border: 1px solid rgba(0, 201, 246, 0.5); /* Bordure plus visible au survol */
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #00C9F6, #007a94); /* Dégradé dans les tons de votre bleu */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-image-container {
+    height: 360px; /* Conteneur d'image beaucoup plus grand */
+    overflow: hidden;
+    position: relative;
+    background-color: #0a0a10; /* Fond plus sombre pour améliorer le contraste */
+    border-bottom: 1px solid rgba(0, 201, 246, 0.15); /* Légère séparation entre l'image et le contenu */
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2); /* Ombre interne subtile */
+}
+
+.card-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 60%, rgba(0, 0, 0, 0.25) 100%); /* Subtil vignettage pour améliorer la netteté perçue */
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Superposition pour améliorer la qualité perçue */
+.card-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0.05) 0%, 
+                rgba(0, 0, 0, 0) 40%, 
+                rgba(0, 0, 0, 0) 60%, 
+                rgba(0, 0, 0, 0.1) 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* Paramètres optimisés qui préservent la qualité de l'image */
+    image-rendering: auto;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    filter: brightness(1.05) contrast(1.08) saturate(1.1); /* Valeurs douces qui préservent les détails */
+    will-change: transform;
+    transition: all 0.4s ease-out;
+    /* Suppression des propriétés qui peuvent dégrader la qualité */
+    -ms-interpolation-mode: bicubic;
+}
+
+/* Désactivation des effets qui causent une perte de qualité au survol */
+.card:hover .card-image-container img {
+    filter: brightness(1.08) contrast(1.1) saturate(1.12); /* Légère amélioration sans déformation */
+    animation: none; /* Désactivation de l'animation qui cause des problèmes */
+}
+
+/* Ajustements spécifiques par type d'image si nécessaire */
+.card:nth-child(4) .card-image-container img {
+    object-position: top center; /* Conserver le positionnement pour Groupie Tracker */
+}
+
+/* Repositionnement du conteneur de contenu */
+.card-content {
+    padding: 25px;
+    background: linear-gradient(0deg, rgba(25, 25, 35, 0.95) 0%, rgba(30, 30, 40, 0.9) 100%);
+    position: relative;
+}
+
+.card-content h3 {
+    color: #FFFFFF; /* Retour à la couleur de texte originale */
+    margin-bottom: 15px; /* Plus d'espace en dessous du titre */
+    font-size: 22px; /* Titre légèrement plus grand */
+}
+
+.card-content p {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 18px; /* Plus d'espace en dessous du paragraphe */
+    font-size: 16px; /* Texte légèrement plus grand */
+    line-height: 1.5;
+}
+
+.tags {
     display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-top: 80px;
-    width: 40%;
-    height: 50%;
-    background-color: rgba(27,26,31, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 40px;
-    padding: 20px 20px;
-    img{
-        width: 100%;
-        height: 100%;
-        border-radius: 20px
-        
-    }
-    span{
-        color: #FFFFFF;
-        font-family: 'londrina', sans-serif;
-        font-size: 14px;
-        background-color: #2a3133;
-        border-radius: 10px;
-        padding: 6px 6px;
-
-    }
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    gap: 8px;
 }
 
-.git{
+.tags span {
+    background-color: rgba(0, 201, 246, 0.15); /* Utilisation de votre bleu */
+    color: #00C9F6; /* Utilisation de votre bleu */
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid rgba(0, 201, 246, 0.2);
+    transition: all 0.2s ease;
+}
+
+.tags span:hover {
+    background-color: rgba(0, 201, 246, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Redesign complet des liens de cartes */
+.card-links {
+    display: flex;
+    justify-content: flex-start; /* Aligner à gauche */
+    margin-top: 25px; /* Espace au-dessus du bouton */
+    position: static; /* Position normale dans le flux */
+}
+
+/* Style amélioré pour les liens GitHub dans les cartes */
+.git {
     width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 201, 246, 0.1);
+    border-radius: 30px;
+    padding: 8px 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 201, 246, 0.2);
+    position: static; /* Position normale dans le flux */
+    margin-top: 10px; /* Espace supplémentaire au-dessus */
 }
 
-.cardContact{
+.git:hover {
+    background-color: rgba(0, 201, 246, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 201, 246, 0.15);
+    border-color: rgba(0, 201, 246, 0.4);
+}
+
+.git img {
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.git:hover img {
+    transform: rotate(10deg);
+}
+
+/* Ajout du texte "View Code" à côté de l'icône GitHub */
+.git::after {
+    content: "View Code";
+    color: #00C9F6;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.git:hover::after {
+    color: #ffffff;
+}
+
+.card-links a {
+    margin-left: 15px;
+    transition: all 0.3s ease;
+    opacity: 0.75;
+}
+
+.card-links a:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.cardProjects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.git {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.git img {
+    width: 25px;
+    height: 25px;
+    transition: transform 0.3s ease;
+}
+
+.git:hover img {
+    transform: scale(1.15);
+}
+
+.live-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.live-link:hover {
+    color: #00C9F6;
+}
+
+.live-link i {
+    font-size: 12px;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.card span {
+    color: #FFFFFF;
+    font-family: 'londrina', sans-serif;
+    font-size: 14px;
+    background-color: #2a3133;
+    border-radius: 10px;
+    padding: 6px 6px;
+}
+
+.git {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.git img {
+    width: 25px; /* Réduction de la taille de l'icône GitHub */
+    height: 25px;
+    transition: var(--transition);
+}
+
+.git:hover img {
+    transform: scale(1.1);
+}
+
+.cardContact {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -281,7 +544,7 @@ h3{
     width: 100%;
 }
 
-.follow{
+.follow {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -295,14 +558,14 @@ h3{
     gap: 30px;
 }
 
-.social{
+.social {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 40px;
 }
 
-.footer{
+.footer {
     display: flex;
     background-color: #201A2E;
     position: sticky;
@@ -314,23 +577,122 @@ h3{
     align-items: center;
     padding: 0 16px;
     margin-top: 80px;
-    
 }
 
-.namefooter{
+.namefooter {
     font-size: 16px;
     font-family: 'londrina', sans-serif;
     color: #00C9F6;
 }
-.designed{
+
+.designed {
     font-size: 16px;
     font-family: 'londrina', sans-serif;
     color: #FFFFFF;
 }
 
-.social{
-    a:hover {
-        transform: scale(1.1);
+.social a:hover {
+    transform: scale(1.1);
+}
+
+.social img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Styles pour les messages de statut du formulaire */
+.form-status {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    font-weight: 500;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.form-status.success {
+    background: rgba(39, 174, 96, 0.2);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    opacity: 1;
+}
+
+.form-status.error {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    opacity: 1;
+}
+
+/* Styles pour le formulaire de contact */
+.contact-form {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    color: #FFFFFF;
+    font-family: 'londrina', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #00C9F6;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Styles pour les liens de cartes de projet */
+.card-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.live-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: var(--text-color-light, #FFFFFF);
+    transition: var(--transition);
+}
+
+.live-link:hover {
+    color: #00C9F6;
+}
+
+.live-link i {
+    font-size: 12px;
+}
+
+/* Pour les écrans à haute résolution */
+@media screen and (min-resolution: 2dppx) {
+    .card-image-container img {
+        image-rendering: auto; /* Meilleur rendu sur les écrans à haute densité */
     }
 }
 
@@ -340,40 +702,45 @@ h3{
         width: 100%;
         flex-wrap: wrap;
         justify-content: center;
-        .imgProfil {
-            width: 30%;
-            height: 30%;
-        }
-        .presentationText {
-            width: 80%;
-        }
     }
+
+    .presentationCard .imgProfil {
+        width: 30%;
+        height: 30%;
+    }
+
+    .presentationCard .presentationText {
+        width: 80%;
+    }
+
     .projects {
         margin-top: 80px;
-        width:30% ;
+        width: 30%;
         padding: 20px 14px;
     }
+
     .cardProjects {
         width: 100%;
         gap: 16px;
     }
+
     .card {
         width: 80%;
         padding: 20px 14px;
         gap: 16px;
     }
+
     .follow {
         width: fit-content;
         padding: 20px 14px;
         gap: 32px;
     }
 
-    .social {
-        img {
-            width: 50px;
-            height: 50px;
-        }
+    .social img {
+        width: 50px;
+        height: 50px;
     }
+
     .footer {
         display: flex;
         justify-content: center;
@@ -382,10 +749,62 @@ h3{
     }
 }
 
+/* Ajustement responsive pour les cartes */
+@media screen and (max-width: 1800px) {
+    .card {
+        width: 550px; /* Légèrement plus petit sur les très grands écrans */
+    }
+    
+    .card-image-container {
+        height: 330px;
+    }
+}
 
-@media screen and (max-width: 768px){
-    .nav{
-        position:fixed;
+@media screen and (max-width: 1600px) {
+    .card {
+        width: 500px;
+    }
+    
+    .card-image-container {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .card {
+        width: 450px;
+    }
+    
+    .card-image-container {
+        height: 280px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .card {
+        width: calc(50% - 40px);
+        min-height: 480px; /* Plus grand sur tablette */
+    }
+    
+    .card-image-container {
+        height: 260px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .card {
+        width: calc(50% - 30px);
+        min-height: 450px;
+    }
+    
+    .card-image-container {
+        height: 240px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav {
+        position: fixed;
         width: 100%;
         height: 50px;
         display: flex;
@@ -395,54 +814,273 @@ h3{
         gap: 16px;
     }
 
-    .name{
-        display:none;
+    .name {
+        display: none;
     }
 
-    .presentationCard{
+    .presentationCard {
         margin-top: 100px;
         width: 100%;
         flex-wrap: wrap;
         justify-content: center;
-        .imgProfil{
-            width: 30%;
-            height: 30%;
-        }
-        .presentationText{
-            width: 80%;
-        }
     }
-    .projects{
+
+    .presentationCard .imgProfil {
+        width: 30%;
+        height: 30%;
+    }
+
+    .presentationCard .presentationText {
+        width: 80%;
+    }
+
+    .projects {
         margin-top: 80px;
         width: 30%;
         padding: 20px 14px;
     }
-    .cardProjects{
+
+    .cardProjects {
         width: 100%;
         gap: 16px;
     }
-    .card{
-        width: 80%;
-        padding: 20px 14px;
-        gap: 16px;
+
+    .card {
+        width: 100%; /* Pleine largeur sur mobile */
+        max-width: 580px; /* Plus large sur mobile pour une meilleure expérience */
+        min-height: 460px; /* Hauteur minimale augmentée */
     }
-    .follow{
+
+    .card-image-container {
+        height: 300px; /* Plus grand sur mobile pour mieux voir les images */
+    }
+
+    .follow {
         width: fit-content;
         padding: 20px 14px;
         gap: 32px;
     }
 
-    .social{
-        img{
-            width: 50px;
-            height: 50px;
-        }
+    .social img {
+        width: 50px;
+        height: 50px;
     }
-    .footer{
+
+    .footer {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 16px;
     }
+}
+
+@media screen and (max-width: 580px) {
+    .card {
+        margin: 15px 5px;
+    }
     
+    .card-image-container {
+        height: 260px;
+    }
+    
+    .card-content {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card {
+        margin: 15px 10px;
+    }
+    
+    .card-image-container {
+        height: 220px;
+    }
+}
+
+/* Nouveau design pour la section contact */
+.contact-intro {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    background: rgba(30, 30, 40, 0.7);
+    border-radius: 16px;
+    padding: 20px 30px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 201, 246, 0.2);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent 30%, rgba(0, 201, 246, 0.1), transparent 70%);
+    transform: translateX(-100%);
+    transition: all 0.6s ease;
+}
+
+.contact-card:hover::before {
+    transform: translateX(100%);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    background: rgba(32, 32, 45, 0.85);
+    border-color: rgba(0, 201, 246, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 201, 246, 0.15);
+}
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+    background: rgba(0, 201, 246, 0.1);
+    border-radius: 50%;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-icon {
+    background: rgba(0, 201, 246, 0.2);
+    transform: scale(1.1) rotate(5deg);
+}
+
+.contact-icon img {
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-icon img {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h3 {
+    font-size: 22px;
+    margin: 0 0 5px 0;
+    color: #FFF;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-info h3 {
+    color: #00C9F6;
+}
+
+.contact-info p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.arrow-icon {
+    font-size: 18px;
+    color: rgba(0, 201, 246, 0.7);
+    margin-left: 15px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover .arrow-icon {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Styles spécifiques pour chaque carte */
+.github-card .contact-icon {
+    background: rgba(36, 41, 46, 0.2);
+}
+
+.github-card:hover .contact-icon {
+    background: rgba(36, 41, 46, 0.3);
+}
+
+.linkedin-card .contact-icon {
+    background: rgba(0, 119, 181, 0.2);
+}
+
+.linkedin-card:hover .contact-icon {
+    background: rgba(0, 119, 181, 0.3);
+}
+
+.email-card .contact-icon {
+    background: rgba(234, 67, 53, 0.2);
+}
+
+.email-card:hover .contact-icon {
+    background: rgba(234, 67, 53, 0.3);
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .contact-card {
+        padding: 15px 20px;
+    }
+    
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+    }
+    
+    .contact-info h3 {
+        font-size: 18px;
+    }
+    
+    .contact-info p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+    }
+    
+    .contact-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .contact-info h3 {
+        font-size: 16px;
+    }
+    
+    .contact-info p {
+        font-size: 11px;
+    }
 }
