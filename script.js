@@ -1,5 +1,5 @@
 /**
- * Portfolio - Script principal
+ * Portfolio - Main script
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * Initialiser la navigation moderne
+ * Initialize modern navigation
  */
 function initNavigation() {
-  // Menu hamburger pour mobile
+  // Mobile hamburger menu
   const menuToggle = document.getElementById("menuToggle");
   const navElements = document.querySelector(".nav-elements");
 
@@ -26,11 +26,11 @@ function initNavigation() {
     });
   }
 
-  // Gestion des liens actifs
+  // Active link management
   const navLinks = document.querySelectorAll(".nav-item");
   const sections = document.querySelectorAll("section");
 
-  // Fonction pour vérifier quelle section est visible
+  // Function to check which section is visible
   function setActiveLink() {
     let current = "";
 
@@ -51,10 +51,10 @@ function initNavigation() {
     });
   }
 
-  // Écouter le scroll pour mettre à jour le lien actif
+  // Listen for scroll to update the active link
   window.addEventListener("scroll", setActiveLink);
 
-  // Fermer le menu mobile lors du clic sur un lien
+  // Close mobile menu when clicking a link
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       menuToggle.classList.remove("active");
@@ -62,7 +62,7 @@ function initNavigation() {
     });
   });
 
-  // Effet de transparence du header au scroll
+  // Header transparency effect on scroll
   const header = document.querySelector(".header");
 
   window.addEventListener("scroll", () => {
@@ -72,6 +72,35 @@ function initNavigation() {
       header.style.background = "transparent";
     }
   });
+
+  // NEW: Add smooth navigation for the logo
+  const logoLink = document.querySelector(".logo-link");
+  if (logoLink) {
+    logoLink.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Smooth fade animation before scrolling
+      const currentScroll = window.scrollY;
+      if (currentScroll > 0) {
+        // Fade effect on the site body
+        document.body.style.opacity = "0.9";
+        document.body.style.transition = "opacity 0.3s ease";
+
+        // Smooth scroll to top
+        setTimeout(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+
+          // Restore opacity after scrolling
+          setTimeout(() => {
+            document.body.style.opacity = "1";
+          }, 300);
+        }, 100);
+      }
+    });
+  }
 }
 
 /**
