@@ -826,6 +826,7 @@ section {
     border-right: 0.15em solid var(--blue);
     letter-spacing: 0.1em;
     animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    color: var(--blue); /* Ajout de la couleur bleue définie dans la charte graphique */
 }
 
 @keyframes typing {
@@ -836,6 +837,61 @@ section {
 @keyframes blink-caret {
     from, to { border-color: transparent }
      50% { border-color: var(--blue) }
+}
+
+/* Correction pour l'affichage du texte sur mobile */
+
+/* Améliorations pour le conteneur de rôle et l'animation typewriter sur mobile */
+.role-container {
+    position: relative;
+    min-height: 40px; /* Hauteur minimale au lieu de hauteur fixe */
+    height: auto; /* Laisser la hauteur s'adapter au contenu */
+    margin-bottom: 15px;
+    overflow: visible; /* Permettre le débordement */
+}
+
+.typewriter {
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.15em solid var(--blue);
+    letter-spacing: 0.1em;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    color: var(--blue);
+}
+
+/* Media queries pour l'adaptation sur mobile */
+@media screen and (max-width: 768px) {
+    .role-container {
+        min-height: 50px; /* Plus d'espace pour le texte sur tablette */
+    }
+    
+    .subtitle {
+        font-size: clamp(16px, 2.2vw, 20px); /* Texte légèrement réduit */
+    }
+    
+    /* Animation adaptée sur mobile */
+    .typewriter {
+        white-space: normal; /* Permettre le retour à la ligne sur mobile */
+        overflow: visible;
+        border-right: none; /* Supprimer le curseur clignotant */
+        animation: none; /* Désactiver l'animation qui pourrait causer des problèmes */
+        word-wrap: break-word; /* Permettre la coupure des mots */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .role-container {
+        min-height: 60px; /* Encore plus d'espace sur petit écran */
+    }
+    
+    .subtitle {
+        font-size: 16px; /* Taille fixe plus petite sur mobile */
+        line-height: 1.4; /* Interligne réduit */
+    }
+    
+    .content-column {
+        padding: 30px 15px; /* Padding réduit pour plus d'espace */
+    }
 }
 
 /* Buttons */
