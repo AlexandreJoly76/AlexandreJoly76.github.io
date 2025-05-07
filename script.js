@@ -214,3 +214,116 @@ function enhanceImages() {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Animation pour les sections au scroll
+  const animateSections = document.querySelectorAll(".animate-section");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+    }
+  );
+
+  animateSections.forEach((section) => {
+    observer.observe(section);
+  });
+
+  // Observer pour les cartes de projet
+  const cardObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  projectCards.forEach((card) => {
+    cardObserver.observe(card);
+  });
+
+  // Navigation mobile
+  const menuToggle = document.getElementById("menuToggle");
+  const navElements = document.querySelector(".nav-elements");
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", function () {
+      this.classList.toggle("active");
+      navElements.classList.toggle("active");
+    });
+  }
+
+  // Fermer le menu au clic sur un lien
+  const navLinks = document.querySelectorAll(".nav-item");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      menuToggle.classList.remove("active");
+      navElements.classList.remove("active");
+    });
+  });
+
+  // Items actifs de navigation
+  window.addEventListener("scroll", () => {
+    let current = "";
+    const sections = document.querySelectorAll("section");
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= sectionTop - sectionHeight / 3) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").substring(1) === current) {
+        link.classList.add("active");
+      }
+    });
+  });
+
+  // Basculement du thème
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = themeToggle.querySelector("i");
+
+  // Vérifier s'il y a un thème sauvegardé
+  const savedTheme = localStorage.getItem("theme");
+
+  // Appliquer le thème sauvegardé ou utiliser les préférences du système
+  if (savedTheme) {
+    document.body.classList.toggle("light-mode", savedTheme === "light");
+    updateThemeIcon(savedTheme === "light");
+  } else {
+    // Détecter les préférences du système
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    document.body.classList.toggle("light-mode", !prefersDarkMode);
+    updateThemeIcon(!prefersDarkMode);
+  }
+
+  // Ajouter l'écouteur d'événement pour le changement de thème
+  themeToggle.addEventListener("click", function () {
+    const isLightMode = document.body.classList.toggle("light-mode");
+    updateThemeIcon(isLightMode);
+    localStorage.setItem("theme", isLightMode ? "light" : "dark");
+  });
+
+  function updateThemeIcon(isLightMode) {
+    themeIcon.className = isLightMode ? "fas fa-moon" : "fas fa-sun";
+  }
+});
