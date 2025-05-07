@@ -819,44 +819,21 @@ section {
     }
 }
 
-/* Typewriter */
+/* Typewriter - Version sans curseur - Avec correction responsive */
 .typewriter {
     white-space: nowrap;
     overflow: hidden;
-    border-right: 0.15em solid var(--blue);
     letter-spacing: 0.1em;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-    color: var(--blue); /* Ajout de la couleur bleue définie dans la charte graphique */
+    animation: typing 3.5s steps(40, end) forwards;
+    color: var(--blue);
+    position: relative;
+    border-right: none;
+    max-width: 100%; /* Assure que le texte ne dépasse pas du conteneur */
 }
 
 @keyframes typing {
     from { width: 0 }
     to { width: 100% }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-     50% { border-color: var(--blue) }
-}
-
-/* Correction pour l'affichage du texte sur mobile */
-
-/* Améliorations pour le conteneur de rôle et l'animation typewriter sur mobile */
-.role-container {
-    position: relative;
-    min-height: 40px; /* Hauteur minimale au lieu de hauteur fixe */
-    height: auto; /* Laisser la hauteur s'adapter au contenu */
-    margin-bottom: 15px;
-    overflow: visible; /* Permettre le débordement */
-}
-
-.typewriter {
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 0.15em solid var(--blue);
-    letter-spacing: 0.1em;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-    color: var(--blue);
 }
 
 /* Media queries pour l'adaptation sur mobile */
@@ -871,11 +848,14 @@ section {
     
     /* Animation adaptée sur mobile */
     .typewriter {
-        white-space: normal; /* Permettre le retour à la ligne sur mobile */
+        white-space: normal;
         overflow: visible;
-        border-right: none; /* Supprimer le curseur clignotant */
-        animation: none; /* Désactiver l'animation qui pourrait causer des problèmes */
-        word-wrap: break-word; /* Permettre la coupure des mots */
+        animation: none;
+        word-wrap: break-word;
+    }
+    
+    .typewriter::after {
+        display: none;
     }
 }
 
@@ -1590,4 +1570,106 @@ section {
 /* Ajouter ceci pour le scroll fluide */
 html {
     scroll-behavior: smooth;
+}
+
+/* Correction pour les problèmes responsive de la section role */
+.role-container {
+    position: relative;
+    min-height: 40px;
+    height: auto; /* Permet au conteneur de s'adapter à son contenu */
+    margin-bottom: 15px;
+    width: 100%; /* Assure que le conteneur prend toute la largeur disponible */
+    overflow: visible;
+}
+
+/* Media queries améliorées pour une meilleure adaptation sur mobile */
+@media screen and (max-width: 768px) {
+    .role-container {
+        min-height: 60px; /* Plus d'espace sur mobile */
+    }
+    
+    .subtitle {
+        font-size: clamp(15px, 2vw, 20px); /* Taille adaptative */
+        max-width: 100%; /* Empêche le débordement */
+    }
+    
+    /* Animation adaptée sur mobile */
+    .typewriter {
+        white-space: normal; /* Permet le retour à la ligne */
+        overflow: visible;
+        animation: none;
+        word-wrap: break-word;
+        max-width: 100%; /* Assure que le texte ne dépasse pas */
+    }
+    
+    /* Correction pour la carte de présentation */
+    .presentation-card {
+        width: 95% !important; /* Force une largeur qui évite le débordement */
+        margin: 0 auto;
+        padding: 20px 15px;
+    }
+    
+    /* Amélioration de l'espacement des boutons sur mobile */
+    .btn-primary, .btn-secondary {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    /* Amélioration pour les cartes de contact sur mobile */
+    .contact-card, .github-card, .linkedin-card, .email-card {
+        max-width: 90%; /* Légèrement plus petit que 100% pour éviter les problèmes de débordement */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Corrections spécifiques pour très petits écrans */
+    .profile-frame {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .content-column {
+        padding: 25px 15px; /* Padding réduit */
+    }
+    
+    .name-headline {
+        font-size: 28px; /* Titre plus petit */
+    }
+    
+    /* Ajustements supplémentaires pour le texte */
+    p, .description {
+        font-size: 15px;
+    }
+    
+    /* Correction pour la section titre */
+    .section-title {
+        padding: 8px 15px;
+        width: 90%;
+    }
+    
+    .section-title h2 {
+        font-size: clamp(20px, 5vw, 24px);
+        margin: 0 8px;
+    }
+}
+
+/* Fix pour la section projects sur mobile */
+@media screen and (max-width: 992px) {
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        gap: 20px; /* Espacement réduit */
+        width: 95%; /* Légèrement réduit pour éviter les débordements */
+        margin: 0 auto;
+        padding: 0; /* Supprime le padding qui peut causer des problèmes */
+    }
+    
+    /* Ajustements pour les cartes de projet */
+    .project-card {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
 }
