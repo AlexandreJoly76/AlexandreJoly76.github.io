@@ -1,61 +1,141 @@
-document.getElementById("Resume").addEventListener("click", function () {
-  window.open("./assets/cv/Cv.pdf", "_blank");
-});
+/**
+ * Script principal - Portfolio d'Alexandre Joly
+ * Version optimisée et nettoyée
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".presentationCard");
-  cards.forEach((card) => {
+  // Éléments DOM fréquemment utilisés
+  const elements = {
+    body: document.body,
+    menuToggle: document.getElementById("menuToggle"),
+    navElements: document.querySelector(".nav-elements"),
+    themeToggle: document.getElementById("themeToggle"),
+    navLinks: document.querySelectorAll(".nav-item"),
+    sections: document.querySelectorAll("section"),
+  };
+
+  const themeIcon = elements.themeToggle?.querySelector("i");
+
+  // Navigation mobile
+  if (elements.menuToggle && elements.navElements) {
+    // Ouvrir/fermer le menu mobile
+    elements.menuToggle.addEventListener("click", () => {
+      elements.menuToggle.classList.toggle("active");
+      elements.navElements.classList.toggle("active");
+    });
+
+    // Fermer le menu après clic sur un lien
+    elements.navLinks.forEach((link) =>
+      link.addEventListener("click", () => {
+        elements.menuToggle.classList.remove("active");
+        elements.navElements.classList.remove("active");
+      })
+    );
+  }
+
+  // Gestion du thème
+  if (elements.themeToggle && themeIcon) {
+    // Fonction pour mettre à jour l'icône selon le thème
+    const updateThemeIcon = (isLightMode) => {
+      themeIcon.className = isLightMode ? "fas fa-moon" : "fas fa-sun";
+    };
+
+    // Chargement du thème sauvegardé
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const isLightMode = savedTheme ? savedTheme === "light" : !prefersDarkMode;
+
+    elements.body.classList.toggle("light-mode", isLightMode);
+    updateThemeIcon(isLightMode);
+
+    // Changement de thème au clic
+    elements.themeToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      const isLightMode = elements.body.classList.toggle("light-mode");
+      localStorage.setItem("theme", isLightMode ? "light" : "dark");
+      updateThemeIcon(isLightMode);
+    });
+  }
+
+  // Animation des éléments au scroll
+  const setupAnimations = () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible", "show");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // Observer les éléments animés
+    document
+      .querySelectorAll(".animate-section, .project-card, .section-title")
+      .forEach((el) => observer.observe(el));
+
+    // Animation de la carte de présentation
     setTimeout(() => {
-      card.classList.add("show"); // Ajoute la classe qui déclenche l'animation
-    }, 500); // Délai de 500ms avant l'apparition
-  });
-});
+      const card = document.querySelector(".presentation-card");
+      if (card) card.classList.add("show");
+    }, 500);
+  };
 
-document.querySelectorAll(".card").forEach((card) => {
-  card.addEventListener("mouseenter", () => {
-    card.style.transition = "all 0.5s ease-in-out";
-    card.style.transform = "scale(1.05)";
-    card.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-    card.style.border = "1.5px solid rgba(255, 255, 255, 0.5)";
-    card.style.boxShadow = "0 0 15px rgba(255, 255, 255, 0.6)";
-    card.style.willChange = "transform"; // Optimisation pour éviter le flou
-  });
+  // Navigation active
+  const setupNavigation = () => {
+    function setActiveNavLink() {
+      const scrollPosition = window.scrollY + 100;
+      let currentSection = "";
 
-  card.addEventListener("mouseleave", () => {
-    card.style.transition = "all 0.5s ease-in-out";
-    card.style.transform = "scale(1)";
-    card.style.backgroundColor = "rgba(27, 26, 31, 0.7)"; // Un fond un peu plus opaque pour éviter le flou
-    card.style.border = "1.5px solid rgba(255, 255, 255, 0.2)";
-    card.style.boxShadow = "0 0 5px rgba(255, 255, 255, 0.2)";
-  });
-});
+      // Identifier la section visible
+      elements.sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
 
-let cardOne = document.getElementById("1");
+        if (
+          scrollPosition >= sectionTop &&
+          scrollPosition < sectionTop + sectionHeight
+        ) {
+          currentSection = section.getAttribute("id");
+        }
+      });
 
-cardOne.addEventListener("click", function () {
-  window.open("https://github.com/AlexandreJoly76/forum-go", "_blank");
-});
+      // Mettre à jour les classes actives
+      elements.navLinks.forEach((link) => {
+        const href = link.getAttribute("href").substring(1);
+        link.classList.toggle("active", href === currentSection);
+      });
 
-let cardTwo = document.getElementById("2");
+      // Cas spécial: au début de la page, activer Home
+      if (scrollPosition < 300) {
+        elements.navLinks.forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#home"
+          );
+        });
+      }
+    }
 
-cardTwo.addEventListener("click", function () {
-  window.open(
-    "https://github.com/AlexandreJoly76/MakeYourGame-SpaceInvader",
-    "_blank"
-  );
-});
-let cardThree = document.getElementById("3");
+    // Initialiser et surveiller le défilement
+    setActiveNavLink();
+    window.addEventListener("scroll", setActiveNavLink);
 
-cardThree.addEventListener("click", function () {
-  window.open("https://github.com/AlexandreJoly76/GroupieTracker", "_blank");
-});
+    // Gestion des clics sur les liens de navigation
+    elements.navLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        elements.navLinks.forEach((navLink) =>
+          navLink.classList.remove("active")
+        );
+        this.classList.add("active");
+      });
+    });
+  };
 
-
-let cardFour = document.getElementById("4");
-
-cardFour.addEventListener("click", function () {
-  window.open(
-    "https://github.com/AlexandreJoly76/AlexandreJoly76.github.io",
-    "_blank"
-  );
+  // Initialiser toutes les fonctionnalités
+  setupAnimations();
+  setupNavigation();
 });
