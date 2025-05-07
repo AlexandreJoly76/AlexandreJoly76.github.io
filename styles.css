@@ -42,52 +42,180 @@ a {
 }
 a:hover { color: var(--blue); }
 
-/* NAVIGATION */
-.nav {
+/* HEADER MODERNE - Nouveaux styles */
+.header {
     position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+}
+
+.nav-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    padding: 0 5%;
     height: 80px;
-    padding: 0 16px;
-    background-color: var(--dark);
-    backdrop-filter: blur(5px);
-    z-index: 100;
+    background-color: rgba(32, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
-.navmenu {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+/* Logo styles */
+.logo {
+    position: relative;
+    z-index: 2;
 }
 
-.navmenu ul {
+.logo-link {
     display: flex;
-    gap: 48px;
-    font-family: var(--font-title);
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+    transition: transform 0.3s ease;
 }
 
-.name {
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo-text {
     display: flex;
     flex-direction: column;
-    font-size: 20px;
-    letter-spacing: 4px;
+    line-height: 1;
+}
+
+.logo-primary {
+    color: var(--blue);
     font-family: var(--font-title);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    transition: all 0.3s;
 }
 
-.name-primary { color: var(--blue); }
-.name-secondary { color: var(--text); }
-
-.theme-switch button {
-    background: none;
-    border: none;
+.logo-secondary {
     color: var(--text);
-    font-size: 20px;
-    cursor: pointer;
-    transition: var(--transition);
+    font-family: var(--font-title);
+    font-size: 22px;
+    letter-spacing: 2px;
+    transition: all 0.3s;
 }
-.theme-switch button:hover { color: var(--blue); }
+
+.logo-link:hover .logo-primary {
+    text-shadow: 0 0 15px rgba(0, 201, 246, 0.7);
+}
+
+/* Navigation elements */
+.nav-elements {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+    color: var(--text);
+    font-family: var(--font-title);
+    font-size: 18px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: var(--blue);
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--blue);
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover::after, .nav-item.active::after {
+    width: 100%;
+}
+
+/* Theme switch button */
+.theme-switch button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 201, 246, 0.1);
+    border: 1px solid rgba(0, 201, 246, 0.3);
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.theme-switch button:hover {
+    background: rgba(0, 201, 246, 0.2);
+    transform: rotate(10deg);
+    box-shadow: 0 0 15px rgba(0, 201, 246, 0.4);
+}
+
+.theme-switch button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.theme-switch button:hover::before {
+    left: 100%;
+}
+
+/* Menu toggle for mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--blue);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Fin des nouveaux styles de navigation */
 
 /* SECTIONS */
 section { padding: 100px 5%; }
@@ -961,6 +1089,13 @@ section { padding: 100px 5%; }
         grid-template-columns: 1fr;
         max-width: 600px;
     }
+    .nav-container {
+        padding: 0 4%;
+    }
+    
+    .nav-links {
+        gap: 30px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -982,6 +1117,52 @@ section { padding: 100px 5%; }
     }
     .contact-cards { flex-direction: column; }
     .skill-category { min-width: 100%; }
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-elements {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        background-color: rgba(25, 20, 35, 0.98);
+        backdrop-filter: blur(10px);
+        padding: 80px 30px;
+        transition: right 0.4s cubic-bezier(0.64, 0.04, 0.35, 1);
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+    }
+    
+    .nav-elements.active {
+        right: 0;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+    
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+    
+    .nav-item {
+        font-size: 22px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -1009,4 +1190,17 @@ section { padding: 100px 5%; }
         height: 18px;
     }
     .github-link::after { font-size: 12px; }
+    .nav-container {
+        height: 70px;
+        padding: 0 5%;
+    }
+    
+    .logo-primary, .logo-secondary {
+        font-size: 18px;
+    }
+    
+    .nav-elements {
+        width: 85%;
+        padding: 70px 20px;
+    }
 }

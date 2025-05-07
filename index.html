@@ -16,26 +16,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="nav">
-        <div class="name">
-            <h1 class="name-primary">ALEXANDRE</h1>
-            <h1 class="name-secondary">JOLY</h1>
-        </div>
-        <div class="navmenu">
-            <ul>
-                <li><a href="#home">Accueil</a></li>
-                <li><a href="#skills">Compétences</a></li>
-                <li><a href="#projects">Projets</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-        <div class="theme-switch">
-            <button id="themeToggle" aria-label="Changer de thème">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-    </nav>
+    <!-- Remplacer la navigation par ce nouveau code -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="#" class="logo-link">
+                    <span class="logo-text">
+                        <span class="logo-primary">ALEXANDRE</span>
+                        <span class="logo-secondary">JOLY</span>
+                    </span>
+                </a>
+            </div>
 
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <div class="nav-elements">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-item active">Accueil</a></li>
+                    <li><a href="#skills" class="nav-item">Compétences</a></li>
+                    <li><a href="#projects" class="nav-item">Projets</a></li>
+                    <li><a href="#contact" class="nav-item">Contact</a></li>
+                </ul>
+                
+                <div class="theme-switch">
+                    <button id="themeToggle" aria-label="Changer de thème">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Le reste du HTML reste inchangé -->
     <section id="home">
     <div class="home-container">
         <div class="presentation-card">

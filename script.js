@@ -3,12 +3,76 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  initNavigation();
   initAnimations();
   initThemeToggle();
   initSmoothScroll();
   initProjectCards();
   enhanceImages();
 });
+
+/**
+ * Initialiser la navigation moderne
+ */
+function initNavigation() {
+  // Menu hamburger pour mobile
+  const menuToggle = document.getElementById("menuToggle");
+  const navElements = document.querySelector(".nav-elements");
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      navElements.classList.toggle("active");
+    });
+  }
+
+  // Gestion des liens actifs
+  const navLinks = document.querySelectorAll(".nav-item");
+  const sections = document.querySelectorAll("section");
+
+  // Fonction pour vérifier quelle section est visible
+  function setActiveLink() {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+
+      if (pageYOffset >= sectionTop - 200) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+  }
+
+  // Écouter le scroll pour mettre à jour le lien actif
+  window.addEventListener("scroll", setActiveLink);
+
+  // Fermer le menu mobile lors du clic sur un lien
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      menuToggle.classList.remove("active");
+      navElements.classList.remove("active");
+    });
+  });
+
+  // Effet de transparence du header au scroll
+  const header = document.querySelector(".header");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.style.background = "rgba(32, 26, 46, 0.95)";
+    } else {
+      header.style.background = "transparent";
+    }
+  });
+}
 
 /**
  * Initialise les animations au scroll et l'animation d'accueil
