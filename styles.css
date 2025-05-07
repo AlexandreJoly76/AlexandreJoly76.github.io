@@ -223,15 +223,49 @@ a:hover { color: var(--blue); }
     padding: 0;
 }
 
+/* Amélioration de l'indicateur de navigation active */
 .nav-item {
     position: relative;
-    color: var(--text-primary); /* Utilisation de la variable qui change avec le thème */
+    color: var(--text-primary);
     font-family: var(--font-title);
     font-size: clamp(16px, 1.8vw, 18px);
     text-decoration: none;
     padding: 8px 0;
     transition: color 0.3s ease;
-    letter-spacing: 0.5px; /* Tracking fixe */
+    letter-spacing: 0.5px;
+}
+
+/* Style amélioré pour l'élément actif */
+.nav-item.active {
+    color: var(--blue);
+    font-weight: 500; /* Légèrement plus gras */
+    transform: scale(1.05); /* Légèrement plus grand */
+    text-shadow: 0 0 8px rgba(0, 201, 246, 0.3); /* Effet de lueur subtil */
+}
+
+/* Effet de soulignement animé plus prononcé */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px; /* Plus épais */
+    background: var(--blue);
+    left: 0;
+    bottom: -3px; /* Légèrement plus bas */
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1); /* Transition plus fluide */
+    border-radius: 3px; /* Coins arrondis */
+    opacity: 0;
+    box-shadow: 0 0 6px rgba(0, 201, 246, 0.5); /* Effet de lueur */
+}
+
+.nav-item.active::after {
+    width: 100%;
+    opacity: 1;
+}
+
+.nav-item:hover:not(.active)::after {
+    width: 70%; /* Seulement 70% au survol pour différencier de l'état actif */
+    opacity: 0.7;
 }
 
 /* Séparer les états hover et active */

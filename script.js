@@ -97,4 +97,75 @@ document.addEventListener("DOMContentLoaded", function () {
     const card = document.querySelector(".presentation-card");
     if (card) card.classList.add("show");
   }, 500);
+
+  // Amélioration de la fonction de détection de section active
+  function setActiveNavLink() {
+    // Obtenir tous les liens de navigation et sections
+    const navLinks = document.querySelectorAll(".nav-item");
+    const sections = document.querySelectorAll("section");
+    
+    // Obtenir la position actuelle du défilement avec une marge
+    const scrollPosition = window.scrollY + 100; // Marge pour une détection anticipée
+    
+    // Trouver la section actuellement visible
+    let currentSection = "";
+    
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+    
+    // Mettre à jour la classe active sur les liens de navigation
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href").substring(1); // Enlever le # du href
+      
+      if (href === currentSection) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+    
+    // Si nous sommes au tout début de la page, activer Home
+    if (scrollPosition < 300) {
+      navLinks.forEach((link) => {
+        if (link.getAttribute("href") === "#home") {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    }
+  }
+  
+  // Exécuter au chargement et au défilement
+  setActiveNavLink();
+  window.addEventListener("scroll", setActiveNavLink);
+  
+  // Gérer les clics sur les liens de navigation
+  document.querySelectorAll(".nav-item").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // e.preventDefault();
+      
+      const targetId = this.getAttribute("href");
+      
+      // Mise à jour manuelle de la classe active lors du clic
+      document.querySelectorAll(".nav-item").forEach((navLink) => {
+        navLink.classList.remove("active");
+      });
+      this.classList.add("active");
+      
+      // Fermer le menu mobile si ouvert
+      const menuToggle = document.getElementById("menuToggle");
+      const navElements = document.querySelector(".nav-elements");
+      if (menuToggle && menuToggle.classList.contains("active")) {
+        menuToggle.classList.remove("active");
+        navElements.classList.remove("active");
+      }
+    });
+  });
 });
