@@ -982,35 +982,57 @@ section {
 .contact-cards {
     display: flex;
     flex-wrap: wrap;
-    gap: clamp(15px, 2vw, 20px);
+    gap: clamp(12px, 2vw, 20px);
     width: 100%;
     justify-content: center;
 }
 
+/* Conteneur pour les cartes sociales */
+.social-cards-wrapper {
+    display: flex;
+    width: 100%;
+    gap: clamp(12px, 2vw, 20px);
+    justify-content: space-between;
+    margin-bottom: clamp(12px, 2vw, 20px);
+}
+
+/* Style de base commun */
 .contact-card {
-    flex: 0 1 clamp(200px, 28%, 280px);
-    max-width: 280px;
     display: flex;
     align-items: center;
     background: var(--bg-card);
     border-radius: 16px;
-    padding: clamp(12px, 1.8vw, 18px);
     border: 1px solid var(--icon-border);
-    transition: var(--transition);
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
 }
 
+/* Styles pour les cartes sociales (GitHub et LinkedIn) */
+.github-card, .linkedin-card {
+    flex: 1 1 calc(50% - clamp(6px, 1vw, 10px));
+    min-height: 100px;
+    padding: clamp(15px, 2vw, 20px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour la carte email */
+.email-card {
+    width: 100%;
+    padding: clamp(15px, 2vw, 20px);
+    overflow: hidden;
+}
+
 .contact-icon {
-    width: clamp(35px, 4.5vw, 45px);
-    height: clamp(35px, 4.5vw, 45px);
+    width: clamp(40px, 5vw, 55px); /* Plus grand */
+    height: clamp(40px, 5vw, 55px); /* Plus grand */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: clamp(8px, 1.2vw, 12px);
+    margin-right: clamp(12px, 1.5vw, 18px);
     background: rgba(0, 201, 246, 0.1);
     border-radius: 50%;
-    transition: var(--transition);
+    transition: transform 0.4s ease, background-color 0.3s ease;
 }
 
 .contact-info {
@@ -1018,13 +1040,14 @@ section {
 }
 
 .contact-info h3 {
-    font-size: clamp(18px, 2vw, 20px);
-    margin-bottom: 5px;
-    transition: var(--transition);
+    font-size: clamp(18px, 2vw, 22px); /* Plus grand */
+    margin-bottom: 8px;
+    font-weight: 600; 
+    transition: color 0.3s ease;
 }
 
 .contact-info p {
-    font-size: clamp(13px, 1.4vw, 14px);
+    font-size: clamp(14px, 1.5vw, 16px);
     color: var(--text-secondary);
     margin-bottom: 0;
 }
@@ -1032,27 +1055,49 @@ section {
 .arrow-icon {
     color: var(--blue);
     margin-left: 15px;
-    opacity: 0.5;
+    opacity: 0.7; /* Plus visible */
     transform: translateX(0);
-    transition: var(--transition);
+    transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
-/* Carte email spécifique */
-.email-card {
-    flex: 0 1 100%;
-    max-width: 99%;
-    margin-top: 15px;
-    order: 3;
-    overflow: hidden;
+/* Styles spécifiques des icônes */
+.github-card .contact-icon { background: rgba(36, 41, 46, 0.2); }
+.linkedin-card .contact-icon { background: rgba(0, 119, 181, 0.2); }
+.email-card .contact-icon { background: rgba(234, 67, 53, 0.2); }
+
+/* Effet hover unifié avec teintes de bleu */
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 201, 246, 0.2);
+    border-color: var(--blue); /* Toujours bleu au survol */
+    background-color: rgba(32, 26, 46, 0.95);
 }
 
+.contact-card:hover .contact-icon {
+    transform: scale(1.15);
+    background: rgba(0, 201, 246, 0.2); /* Bleu au survol pour toutes les cartes */
+}
+
+.contact-card:hover .contact-info h3 {
+    color: var(--blue);
+}
+
+.contact-card:hover .arrow-icon {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+/* Correction : remplacer les couleurs jaune par bleu */
+.github-card:hover { border-color: var(--blue-hover); }
+.github-card:hover .contact-icon { background: rgba(0, 201, 246, 0.3); }
+
+/* Conserver l'aspect de la carte email */
 .email-card .contact-info {
     width: 100%;
     overflow: hidden;
 }
 
 .email-card .contact-info p {
-    font-size: clamp(13px, 1.4vw, 15px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1065,6 +1110,7 @@ section {
 
 /* Styles hover - uniquement pour les appareils avec capacité de survol */
 @media (hover: hover) and (pointer: fine) {
+    /* Règles générales */
     .contact-card:hover .contact-icon {
         background: rgba(0, 201, 246, 0.2);
         transform: scale(1.1) rotate(5deg);
@@ -1078,13 +1124,29 @@ section {
         opacity: 1;
     }
     
-    .github-card:hover .contact-icon { background: rgba(36, 41, 46, 0.3); }
-    .github-card:hover { border-color: #fcd535; }
+    /* Correction pour GitHub - remplacer le jaune par du bleu */
+    .github-card:hover { 
+        border-color: var(--blue-hover) !important; /* Forcer la couleur bleue */
+    }
+    .github-card:hover .contact-icon { 
+        background: rgba(0, 201, 246, 0.3) !important; /* Bleu au lieu de gris foncé */
+    }
     
-    .linkedin-card:hover .contact-icon { background: rgba(0, 119, 181, 0.3); }
-    .linkedin-card:hover { border-color: #0077b5; }
+    /* Garder LinkedIn bleu */
+    .linkedin-card:hover { 
+        border-color: var(--blue-hover);
+    }
+    .linkedin-card:hover .contact-icon { 
+        background: rgba(0, 201, 246, 0.3);
+    }
     
-    .email-card:hover .contact-icon { background: rgba(234, 67, 53, 0.3); }
+    /* Garder Email avec sa propre couleur si nécessaire */
+    .email-card:hover .contact-icon { 
+        background: rgba(0, 201, 246, 0.3);
+    }
+    .email-card:hover {
+        border-color: var(--blue-hover);
+    }
 }
 
 /* Styles d'appareils tactiles */
