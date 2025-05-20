@@ -822,10 +822,13 @@ section {
     border-color: rgba(0, 201, 246, 0.5);
 }
 
-/* Styles pour la vidéo au survol */
+/* Styles pour la vidéo au survol - Simplifiés et optimisés */
 .card-image {
     position: relative;
     overflow: hidden;
+    height: clamp(200px, 30vw, 300px);
+    background-color: #0a0a10;
+    border-bottom: 1px solid rgba(0, 201, 246, 0.15);
 }
 
 .static-image,
@@ -834,7 +837,12 @@ section {
     height: 100%;
     object-fit: contain;
     object-position: center;
-    transition: opacity 0.4s ease;
+}
+
+.static-image {
+    transition: opacity 0.8s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .hover-video {
@@ -843,34 +851,22 @@ section {
     left: 0;
     opacity: 0;
     z-index: 2;
+    transition: opacity 0.8s ease; /* Plus lente pour une transition douce */
 }
 
+/* État de survol optimisé */
 .project-card:hover .static-image {
-    opacity: 0.2;
+    opacity: 0;
 }
 
 .project-card:hover .hover-video {
     opacity: 1;
 }
 
-.card-image {
-    height: clamp(200px, 30vw, 300px);
-    background-color: #0a0a10;
-    overflow: hidden;
-    position: relative;
-    border-bottom: 1px solid rgba(0, 201, 246, 0.15);
-}
-
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    transition: filter 0.4s ease;
-}
-
-.project-card:hover .card-image img {
-    filter: brightness(1.08) contrast(1.1) saturate(1.12);
+/* Ajout d'une classe de pré-démarrage pour la vidéo */
+.video-ready .hover-video {
+    /* Préparer la vidéo à être affichée sans transition brutale */
+    opacity: 0.01; /* Juste assez pour être "activée" mais invisible */
 }
 
 .card-content {
