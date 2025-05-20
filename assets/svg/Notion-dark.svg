@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50" height="50">
+  <!-- Version pour fond sombre (mode dark) -->
+  <circle cx="25" cy="25" r="23" fill="#ffffff" />
+  <g fill="#000000">
+    <path d="M15 14c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V16c0-1.1-.9-2-2-2H15zm0 2h20v18H15V16z"/>
+    <path d="M18 19c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1H19c-.55 0-1-.45-1-1V19zm2 1v10h10V20H20z"/>
+    <path d="M25 22l-4 4-1-1v5h10v-8h-5zm3 7h-6v-1l1-1 2 2 3-3v3z"/>
+    <circle cx="28" cy="22" r="1" />
+  </g>
+</svg>

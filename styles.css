@@ -798,6 +798,15 @@ section {
     font-weight: 500;
 }
 
+/* Gestion des logos avec versions light/dark */
+body:not(.light-mode) .skill-item img[alt="Notion"] {
+    content: url("./assets/svg/Notion-light.svg");
+}
+
+body.light-mode .skill-item img[alt="Notion"] {
+    content: url("./assets/svg/Notion-dark.svg");
+}
+
 /* ----- SECTION PROJECTS ----- */
 /* Structure des projets */
 .projects-grid {
@@ -1046,13 +1055,16 @@ section {
 
 /* Gestion spécifique du logo Roblox */
 /* Thème sombre (par défaut) */
-.roblox-logo {
+.roblox-logo,
+.notion-logo {
     fill: white;
 }
 
 /* Thème clair */
 html.light-mode .roblox-logo,
-[data-theme="light"] .roblox-logo {
+html.light-mode .notion-logo,
+[data-theme="light"] .roblox-logo,
+[data-theme="light"] .notion-logo {
     fill: black;
 }
 
