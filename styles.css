@@ -1,14 +1,28 @@
-/* Importation des polices modernes */
+/* =========================================
+   STRUCTURE DU FICHIER REFACTORISÉ
+   =========================================
+   1. Variables et thèmes
+   2. Reset et styles de base
+   3. Layouts et grilles génériques
+   4. Composants communs
+   5. Sections spécifiques (header, home, skills, projects, contact)
+   6. Animations
+   7. Utilitaires
+   8. Media queries
+   ========================================= */
+
+/* =========================================
+   1. VARIABLES ET THÈMES
+   ========================================= */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
 
-/* Variables et thèmes */
 :root {
     /* Couleurs et effets */
     --blue: #00C9F6;
     --blue-hover: #33D4F8;
     --blue-active: #0097B8;
     --radius: 20px;
-    --transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transition encore plus rapide */
+    --transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
     --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     
     /* Typographie */
@@ -49,7 +63,8 @@
 }
 
 /* Thème clair */
-body.light-mode {
+body.light-mode,
+[data-theme="light"] {
     --bg-main: #f5f5f7;
     --bg-surface: #ffffff;
     --bg-card: rgba(255, 255, 255, 0.9);
@@ -69,7 +84,7 @@ body.light-mode {
 }
 
 /* =========================================
-   RESET & BASE
+   2. RESET ET STYLES DE BASE
    ========================================= */
 *, *::before, *::after { 
     margin: 0; 
@@ -96,7 +111,7 @@ body {
     transition: var(--theme-transition);
 }
 
-/* Éléments généraux */
+/* Éléments de base */
 img {
     max-width: 100%;
     height: auto;
@@ -123,8 +138,215 @@ a {
 a:hover { color: var(--blue); }
 
 /* =========================================
-   HEADER & NAVIGATION
+   3. LAYOUTS ET GRILLES GÉNÉRIQUES
    ========================================= */
+section { 
+    padding: var(--section-spacing) var(--container-padding); 
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+.section-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 201, 246, 0.2), transparent);
+    top: 50%;
+    left: 0;
+    z-index: 0;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-section);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius);
+    padding: 15px 40px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border: 1px solid var(--border-light);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
+                opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.section-title.visible, 
+.animate-section.visible .section-title {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.section-title h2 {
+    font-size: var(--heading-medium);
+    font-family: var(--font-title);
+    font-weight: 600;
+    margin: 0 25px;
+    position: relative;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: var(--blue);
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-out;
+}
+
+.section-header:hover .section-title h2::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.title-decoration {
+    height: 2px;
+    width: 30px;
+    background: linear-gradient(90deg, transparent, var(--blue));
+    margin: 0 10px;
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
+.title-decoration:last-child {
+    background: linear-gradient(90deg, var(--blue), transparent);
+}
+
+@keyframes pulseWidth {
+    0% { width: 30px; opacity: 0.7; }
+    50% { width: 40px; opacity: 1; }
+    100% { width: 30px; opacity: 0.7; }
+}
+
+.section-header:hover .title-decoration {
+    animation: pulseWidth 1.5s ease-in-out infinite;
+}
+
+/* =========================================
+   4. COMPOSANTS COMMUNS
+   ========================================= */
+/* Boutons */
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(10px, 2vw, 15px);
+    margin-top: clamp(20px, 3vw, 30px);
+}
+
+.btn-primary, 
+.btn-secondary {
+    padding: clamp(10px, 1.5vw, 14px) clamp(20px, 2.5vw, 28px);
+    border-radius: 30px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-title);
+    font-size: clamp(16px, 1.8vw, 20px);
+    position: relative;
+    margin-right: clamp(10px, 1.5vw, 15px);
+    z-index: 1;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 201, 246, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--blue);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Assurer la spécificité sans !important */
+.btn-primary,
+.btn-primary:visited {
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0, 201, 246, 0.1);
+    color: var (--blue);
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 201, 246, 0.4);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:active, 
+.btn-secondary:active {
+    transform: translateY(-1px);
+}
+
+.btn-primary:focus, 
+.btn-secondary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 201, 246, 0.5);
+}
+
+.btn-primary span, 
+.btn-primary i, 
+.btn-secondary span, 
+.btn-secondary i {
+    position: relative;
+    z-index: 2;
+    color: inherit;
+}
+
+/* Cartes */
+.card-base {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 6px 20px var(--shadow-color);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Logos et icônes */
+.icon-base {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   5. SECTIONS SPÉCIFIQUES
+   ========================================= */
+
+/* ----- HEADER & NAVIGATION ----- */
 .header {
     position: fixed;
     width: 100%;
@@ -337,111 +559,7 @@ a:hover { color: var(--blue); }
     transition: all 0.3s ease-in-out;
 }
 
-/* =========================================
-   SECTIONS COMMUNES
-   ========================================= */
-section { 
-    padding: var(--section-spacing) var(--container-padding); 
-    width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
-}
-
-.section-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 60px;
-    position: relative;
-}
-
-.section-header::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 201, 246, 0.2), transparent);
-    top: 50%;
-    left: 0;
-    z-index: 0;
-}
-
-.section-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-section);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius);
-    padding: 15px 40px;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    border: 1px solid var(--border-light);
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
-                opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.section-title.visible, 
-.animate-section.visible .section-title {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.section-title h2 {
-    font-size: var(--heading-medium);
-    font-family: var(--font-title);
-    font-weight: 600;
-    margin: 0 25px;
-    position: relative;
-}
-
-.section-title h2::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background: var(--blue);
-    bottom: -5px;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.5s ease-out;
-}
-
-.section-header:hover .section-title h2::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-.title-decoration {
-    height: 2px;
-    width: 30px;
-    background: linear-gradient(90deg, transparent, var(--blue));
-    margin: 0 10px;
-    border-radius: 2px;
-    opacity: 0.7;
-}
-
-.title-decoration:last-child {
-    background: linear-gradient(90deg, var(--blue), transparent);
-}
-
-@keyframes pulseWidth {
-    0% { width: 30px; opacity: 0.7; }
-    50% { width: 40px; opacity: 1; }
-    100% { width: 30px; opacity: 0.7; }
-}
-
-.section-header:hover .title-decoration {
-    animation: pulseWidth 1.5s ease-in-out infinite;
-}
-
-/* =========================================
-   HOME
-   ========================================= */
+/* ----- SECTION HOME ----- */
 #home {
     min-height: 100vh;
     display: flex;
@@ -631,111 +749,7 @@ section {
     to { width: 100% }
 }
 
-/* Boutons - Refonte complète pour éliminer les défauts visuels */
-.cta-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: clamp(10px, 2vw, 15px);
-    margin-top: clamp(20px, 3vw, 30px);
-}
-
-.btn-primary, .btn-secondary {
-    /* Styles de base conservés */
-    padding: clamp(10px, 1.5vw, 14px) clamp(20px, 2.5vw, 28px);
-    border-radius: 30px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-family: var(--font-title);
-    font-size: clamp(16px, 1.8vw, 20px);
-    position: relative;
-    margin-right: clamp(10px, 1.5vw, 15px);
-    z-index: 1;
-    
-    /* Transition simplifiée et sécurisée */
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Style de base du bouton primaire */
-.btn-primary {
-    background-color: var(--blue);
-    color: white !important; /* Forcer la couleur blanche */
-    border: none;
-    box-shadow: 0 4px 12px rgba(0, 201, 246, 0.3);
-}
-
-/* Style de base du bouton secondaire */
-.btn-secondary {
-    background-color: transparent;
-    color: var(--text-primary) !important; /* Forcer la couleur du texte */
-    border: 2px solid var(--blue);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Garantir que le contenu des boutons reste visible */
-.btn-primary *, .btn-secondary * {
-    color: inherit !important;
-    position: relative;
-    z-index: 10; /* Valeur élevée pour garantir que le texte soit toujours au-dessus */
-}
-
-/* Effets de survol simplifiés */
-.btn-primary:hover {
-    background-color: var(--blue-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 201, 246, 0.4);
-}
-
-.btn-secondary:hover {
-    background-color: rgba(0, 201, 246, 0.1);
-    color: var(--blue) !important; /* Forcer la couleur au survol */
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-/* Effets d'activation */
-.btn-primary:active, .btn-secondary:active {
-    transform: translateY(-1px);
-}
-
-/* Effet de focus sur les boutons pour l'accessibilité */
-.btn-primary:focus, .btn-secondary:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 201, 246, 0.5);
-}
-
-/* Assurer que les contenus des boutons restent visibles */
-.btn-primary span, 
-.btn-primary i, 
-.btn-secondary span, 
-.btn-secondary i {
-    position: relative;
-    z-index: 2;
-}
-
-/* Optimisation pour les appareils tactiles */
-@media (hover: none) {
-    .btn-primary:hover, .btn-secondary:hover {
-        transform: translateY(0);
-    }
-    
-    .btn-primary:active, .btn-secondary:active {
-        transform: translateY(1px);
-    }
-}
-
-/* =========================================
-   SKILLS
-   ========================================= */
-#skills {
-    padding: var(--section-spacing) var(--container-padding);
-    width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
-}
-
+/* ----- SECTION SKILLS ----- */
 .skills-container {
     display: flex;
     flex-wrap: wrap;
@@ -784,9 +798,8 @@ section {
     font-weight: 500;
 }
 
-/* =========================================
-   PROJECTS
-   ========================================= */
+/* ----- SECTION PROJECTS ----- */
+/* Structure des projets */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 450px), 1fr));
@@ -795,218 +808,11 @@ section {
     max-width: 1400px;
     margin: 0 auto;
     padding: clamp(10px, 2vw, 20px);
-    contain: layout style; /* Optimisation des performances de rendu */
+    contain: layout style;
+    animation: fadeIn 0.4s ease-out forwards;
 }
 
-.project-card {
-    background-color: var(--bg-card);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 201, 246, 0.25);
-    box-shadow: 0 6px 20px var(--shadow-color);
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 
-        transform 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-        box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-        border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-        opacity 0.6s ease-out;
-    cursor: pointer;
-    will-change: transform, box-shadow; 
-    transform: translateY(0); /* Valeur initiale explicite */
-    backface-visibility: hidden; /* Améliore les performances de rendu */
-    -webkit-font-smoothing: subpixel-antialiased; /* Améliore le rendu du texte */
-    contain: content; /* Isolation pour optimiser les performances */
-    transform-style: preserve-3d; /* Améliore les performances 3D */
-}
-
-.project-card.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* État hover instantané */
-.project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 201, 246, 0.2);
-    border-color: rgba(0, 201, 246, 0.5);
-}
-
-/* Styles pour la vidéo au survol - Simplifiés et optimisés */
-.card-image {
-    position: relative;
-    overflow: hidden;
-    height: clamp(200px, 30vw, 300px);
-    background-color: #0a0a10;
-    border-bottom: 1px solid rgba(0, 201, 246, 0.15);
-    transform: translateZ(0); /* Force l'accélération matérielle */
-    contain: strict; /* Isolation complète pour performance */
-}
-
-.static-image,
-.hover-video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    transition: opacity 0.2s ease !important;
-    transform: translateZ(0); /* Force l'accélération matérielle */
-}
-
-.static-image {
-    transition: opacity 0.4s ease;
-    position: relative;
-    z-index: 1;
-}
-
-.hover-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    z-index: 2;
-    transition: opacity 0.4s ease;
-}
-
-/* État hover immédiat pour les images */
-.project-card:hover .static-image {
-    opacity: 0;
-}
-
-.project-card:hover .hover-video {
-    opacity: 1;
-}
-
-/* Ajout d'une classe de pré-démarrage pour la vidéo */
-.video-ready .hover-video {
-    /* Préparer la vidéo à être affichée sans transition brutale */
-    opacity: 0.01; /* Juste assez pour être "activée" mais invisible */
-}
-
-.card-content {
-    padding: clamp(15px, 2.5vw, 25px);
-    background: var(--card-gradient);
-    flex: 1;
-}
-
-.card-content h3 {
-    margin-bottom: clamp(10px, 1.5vw, 15px);
-    font-size: clamp(18px, 2.2vw, 22px);
-}
-
-.card-content p {
-    color: var(--text-secondary);
-    margin-bottom: clamp(12px, 1.8vw, 18px);
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
-}
-
-.tags span {
-    background-color: rgba(0, 201, 246, 0.15);
-    color: var(--blue);
-    padding: 5px 12px;
-    border-radius: 30px;
-    font-size: 12px;
-    font-weight: 500;
-    border: 1px solid rgba(0, 201, 246, 0.2);
-    transition: transform 0.1s ease, background-color 0.1s ease; /* Encore plus rapide */
-}
-
-.tags span:hover {
-    background-color: rgba(0, 201, 246, 0.25);
-    transform: translateY(-2px);
-}
-
-.card-links {
-    display: flex;
-    margin-top: 15px;
-}
-
-.github-link {
-    display: flex;
-    align-items: center;
-    background-color: rgba(0, 201, 246, 0.1);
-    border-radius: 30px;
-    padding: 8px 18px;
-    border: 1px solid rgba(0, 201, 246, 0.2);
-    transition: var(--transition);
-}
-
-.github-link::after {
-    content: "View Code";
-    color: var(--blue);
-    font-size: 14px;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.github-link img {
-    width: 22px;
-    height: 22px;
-    margin-right: 10px;
-    transition: transform 0.3s ease;
-}
-
-.github-link:hover img {
-    transform: scale(1.15);
-}
-
-.github-link:hover {
-    animation: githubPulse 1.5s infinite;
-}
-
-@keyframes githubPulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 201, 246, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(0, 201, 246, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 201, 246, 0); }
-}
-
-/* Optimisations avancées pour toutes les cartes de projet */
-#course-projects .project-card,
-#personal-projects .project-card {
-    /* Pré-charge l'état hover pour éliminer le délai */
-    transform: translate3d(0, 0, 0); /* Force l'accélération matérielle */
-}
-
-/* Nouveau style pour les liens de jeux */
-.game-link::after {
-    content: "View Game" !important; /* Remplacer "View Code" par "View Game" */
-}
-
-/* Styles pour les liens de jeux Roblox */
-.game-link img {
-    color: inherit; /* Utiliser la couleur héritée plutôt que de forcer une couleur */
-}
-
-/* En mode clair, le logo devient noir */
-body.light-mode .game-link img {
-    color: inherit; /* Utiliser la couleur héritée plutôt que de forcer une couleur */
-}
-
-.game-link:hover img {
-    transform: scale(1.15) rotate(10deg); /* Effet légèrement différent de GitHub */
-}
-
-/* Style spécifique et direct pour le logo Roblox */
-.roblox-logo {
-    fill: white !important; /* Force la couleur blanche en mode sombre */
-}
-
-/* En mode clair, forcer la couleur noire */
-body.light-mode .roblox-logo {
-    fill: black !important;
-}
-
-/* =========================================
-   PROJECTS TABS
-   ========================================= */
+/* Style des onglets */
 .projects-tabs {
     display: flex;
     justify-content: center;
@@ -1063,50 +869,194 @@ body.light-mode .roblox-logo {
     box-shadow: 0 6px 15px rgba(0, 201, 246, 0.1);
 }
 
-/* Animation d'apparition en fondu pour les grilles de projets */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Cartes de projet */
+.project-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 201, 246, 0.25);
+    box-shadow: 0 6px 20px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+                box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+                border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+                opacity 0.6s ease-out;
+    cursor: pointer;
+    will-change: transform, box-shadow;
+    transform: translateY(0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    contain: content;
+    transform-style: preserve-3d;
 }
 
-.projects-grid {
-    animation: fadeIn 0.4s ease-out forwards;
+.project-card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Responsive pour les onglets */
-@media screen and (max-width: 768px) {
-    .projects-tabs {
-        flex-direction: row;
-        width: 100%;
-        padding: 0 20px;
-        gap: 10px;
-    }
-    
-    .project-tab {
-        flex: 1;
-        padding: 8px 12px;
-        font-size: 14px;
-        text-align: center;
-    }
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 201, 246, 0.2);
+    border-color: rgba(0, 201, 246, 0.5);
 }
 
-/* Optimisation globale des transitions */
-#course-projects, 
-#personal-projects,
-.project-tab,
-.project-card,
-.card-image,
+/* Image et vidéo de la carte */
+.card-image {
+    position: relative;
+    overflow: hidden;
+    height: clamp(200px, 30vw, 300px);
+    background-color: #0a0a10;
+    border-bottom: 1px solid rgba(0, 201, 246, 0.15);
+    transform: translateZ(0);
+    contain: strict;
+}
+
 .static-image,
-.hover-video,
-.tags span,
-.github-link {
-    /* Optimisation pour toutes les animations */
-    transition-delay: 0s !important; /* Éliminer tout délai */
+.hover-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: opacity 0.2s ease;
+    transform: translateZ(0);
 }
 
-/* =========================================
-   CONTACT
-   ========================================= */
+.static-image {
+    position: relative;
+    z-index: 1;
+}
+
+.hover-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+}
+
+.project-card:hover .static-image {
+    opacity: 0;
+}
+
+.project-card:hover .hover-video {
+    opacity: 1;
+}
+
+.video-ready .hover-video {
+    opacity: 0.01;
+}
+
+/* Contenu de la carte */
+.card-content {
+    padding: clamp(15px, 2.5vw, 25px);
+    background: var(--card-gradient);
+    flex: 1;
+}
+
+.card-content h3 {
+    margin-bottom: clamp(10px, 1.5vw, 15px);
+    font-size: clamp(18px, 2.2vw, 22px);
+}
+
+.card-content p {
+    color: var(--text-secondary);
+    margin-bottom: clamp(12px, 1.8vw, 18px);
+}
+
+/* Tags */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.tags span {
+    background-color: rgba(0, 201, 246, 0.15);
+    color: var(--blue);
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid rgba(0, 201, 246, 0.2);
+    transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+.tags span:hover {
+    background-color: rgba(0, 201, 246, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Liens */
+.card-links {
+    display: flex;
+    margin-top: 15px;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 201, 246, 0.1);
+    border-radius: 30px;
+    padding: 8px 18px;
+    border: 1px solid rgba(0, 201, 246, 0.2);
+    transition: var(--transition);
+}
+
+.github-link::after {
+    content: "View Code";
+    color: var(--blue);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.game-link::after {
+    content: "View Game";
+}
+
+.github-link img {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.github-link:hover img {
+    transform: scale(1.15);
+}
+
+.game-link:hover img {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.github-link:hover {
+    animation: githubPulse 1.5s infinite;
+}
+
+@keyframes githubPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 201, 246, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 201, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 201, 246, 0); }
+}
+
+/* Gestion spécifique du logo Roblox */
+/* Thème sombre (par défaut) */
+.roblox-logo {
+    fill: white;
+}
+
+/* Thème clair */
+html.light-mode .roblox-logo,
+[data-theme="light"] .roblox-logo {
+    fill: black;
+}
+
+/* ----- SECTION CONTACT ----- */
 .contact-container {
     max-width: 900px;
     width: 100%;
@@ -1137,7 +1087,6 @@ body.light-mode .roblox-logo {
     font-size: clamp(16px, 1.8vw, 18px);
 }
 
-/* Section de contact spécifique */
 .contact-container .section-header {
     margin-bottom: 30px;
 }
@@ -1157,7 +1106,7 @@ body.light-mode .roblox-logo {
     width: 40px;
 }
 
-/* Cartes de contact */
+/* Structure des cartes de contact */
 .contact-cards {
     display: flex;
     flex-wrap: wrap;
@@ -1166,7 +1115,6 @@ body.light-mode .roblox-logo {
     justify-content: center;
 }
 
-/* Conteneur pour les cartes sociales */
 .social-cards-wrapper {
     display: flex;
     width: 100%;
@@ -1175,7 +1123,7 @@ body.light-mode .roblox-logo {
     margin-bottom: clamp(12px, 2vw, 20px);
 }
 
-/* Style de base commun */
+/* Styles communs des cartes */
 .contact-card {
     display: flex;
     align-items: center;
@@ -1187,7 +1135,6 @@ body.light-mode .roblox-logo {
     overflow: hidden;
 }
 
-/* Styles pour les cartes sociales (GitHub et LinkedIn) */
 .github-card, .linkedin-card {
     flex: 1 1 calc(50% - clamp(6px, 1vw, 10px));
     min-height: 100px;
@@ -1195,7 +1142,6 @@ body.light-mode .roblox-logo {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour la carte email */
 .email-card {
     width: 100%;
     padding: clamp(15px, 2vw, 20px);
@@ -1203,8 +1149,8 @@ body.light-mode .roblox-logo {
 }
 
 .contact-icon {
-    width: clamp(40px, 5vw, 55px); /* Plus grand */
-    height: clamp(40px, 5vw, 55px); /* Plus grand */
+    width: clamp(40px, 5vw, 55px);
+    height: clamp(40px, 5vw, 55px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1219,7 +1165,7 @@ body.light-mode .roblox-logo {
 }
 
 .contact-info h3 {
-    font-size: clamp(18px, 2vw, 22px); /* Plus grand */
+    font-size: clamp(18px, 2vw, 22px);
     margin-bottom: 8px;
     font-weight: 600; 
     transition: color 0.3s ease;
@@ -1227,34 +1173,34 @@ body.light-mode .roblox-logo {
 
 .contact-info p {
     font-size: clamp(14px, 1.5vw, 16px);
-    color: var (--text-secondary);
+    color: var(--text-secondary);
     margin-bottom: 0;
 }
 
 .arrow-icon {
     color: var(--blue);
     margin-left: 15px;
-    opacity: 0.7; /* Plus visible */
+    opacity: 0.7;
     transform: translateX(0);
     transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
-/* Styles spécifiques des icônes */
+/* Couleurs de fond des icônes spécifiques */
 .github-card .contact-icon { background: rgba(36, 41, 46, 0.2); }
 .linkedin-card .contact-icon { background: rgba(0, 119, 181, 0.2); }
 .email-card .contact-icon { background: rgba(234, 67, 53, 0.2); }
 
-/* Effet hover unifié avec teintes de bleu */
+/* États hover pour cartes de contact */
 .contact-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 201, 246, 0.2);
-    border-color: var(--blue); /* Toujours bleu au survol */
+    border-color: var(--blue);
     background-color: rgba(32, 26, 46, 0.95);
 }
 
 .contact-card:hover .contact-icon {
     transform: scale(1.15);
-    background: rgba(0, 201, 246, 0.2); /* Bleu au survol pour toutes les cartes */
+    background: rgba(0, 201, 246, 0.2);
 }
 
 .contact-card:hover .contact-info h3 {
@@ -1266,11 +1212,7 @@ body.light-mode .roblox-logo {
     transform: translateX(5px);
 }
 
-/* Correction : remplacer les couleurs jaune par bleu */
-.github-card:hover { border-color: var(--blue-hover); }
-.github-card:hover .contact-icon { background: rgba(0, 201, 246, 0.3); }
-
-/* Conserver l'aspect de la carte email */
+/* Styles spécifiques email */
 .email-card .contact-info {
     width: 100%;
     overflow: hidden;
@@ -1282,53 +1224,13 @@ body.light-mode .roblox-logo {
     text-overflow: ellipsis;
 }
 
-/* Styles spécifiques de carte */
-.github-card .contact-icon { background: rgba(36, 41, 46, 0.2); }
-.linkedin-card .contact-icon { background: rgba(0, 119, 181, 0.2); }
-.email-card .contact-icon { background: rgba(234, 67, 53, 0.2); }
-
-/* Styles hover - uniquement pour les appareils avec capacité de survol */
+/* Optimisation hover pour mouse vs. touch */
 @media (hover: hover) and (pointer: fine) {
-    /* Règles générales */
     .contact-card:hover .contact-icon {
-        background: rgba(0, 201, 246, 0.2);
         transform: scale(1.1) rotate(5deg);
-    }
-    
-    .contact-card:hover .contact-info h3 {
-        color: var(--blue);
-    }
-    
-    .contact-card:hover .arrow-icon {
-        opacity: 1;
-    }
-    
-    /* Correction pour GitHub - remplacer le jaune par du bleu */
-    .github-card:hover { 
-        border-color: var(--blue-hover) !important; /* Forcer la couleur bleue */
-    }
-    .github-card:hover .contact-icon { 
-        background: rgba(0, 201, 246, 0.3) !important; /* Bleu au lieu de gris foncé */
-    }
-    
-    /* Garder LinkedIn bleu */
-    .linkedin-card:hover { 
-        border-color: var(--blue-hover);
-    }
-    .linkedin-card:hover .contact-icon { 
-        background: rgba(0, 201, 246, 0.3);
-    }
-    
-    /* Garder Email avec sa propre couleur si nécessaire */
-    .email-card:hover .contact-icon { 
-        background: rgba(0, 201, 246, 0.3);
-    }
-    .email-card:hover {
-        border-color: var(--blue-hover);
     }
 }
 
-/* Styles d'appareils tactiles */
 @media (hover: none) {
     .contact-card {
         transition: transform 0.3s ease;
@@ -1342,33 +1244,37 @@ body.light-mode .roblox-logo {
     }
 }
 
-/* Amélioration de la visibilité du texte en mode clair dans la section contact */
-body.light-mode .contact-card:hover {
-    background-color: rgba(255, 255, 255, 0.95); /* Fond plus clair en mode light */
+/* Amélioration de la visibilité en mode clair */
+body.light-mode .contact-card:hover,
+[data-theme="light"] .contact-card:hover {
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 body.light-mode .contact-card:hover .contact-info h3,
-body.light-mode .contact-card:hover .contact-info p {
-    color: var(--blue) !important; /* Utiliser la couleur bleue pour le texte au survol */
+body.light-mode .contact-card:hover .contact-info p,
+[data-theme="light"] .contact-card:hover .contact-info h3,
+[data-theme="light"] .contact-card:hover .contact-info p {
+    color: var(--blue);
 }
 
-body.light-mode .contact-card:hover .arrow-icon {
-    color: var(--blue-hover) !important; /* Rendre visible l'icône de flèche */
+body.light-mode .contact-card:hover .arrow-icon,
+[data-theme="light"] .contact-card:hover .arrow-icon {
+    color: var(--blue-hover);
 }
 
-/* Modes spécifiques pour différentes cartes en mode clair */
 body.light-mode .github-card:hover .contact-info h3,
-body.light-mode .linkedin-card:hover .contact-info h3 {
-    color: var(--blue-hover) !important; /* Texte plus foncé pour meilleur contraste */
+body.light-mode .linkedin-card:hover .contact-info h3,
+[data-theme="light"] .github-card:hover .contact-info h3,
+[data-theme="light"] .linkedin-card:hover .contact-info h3 {
+    color: var(--blue-hover);
 }
 
-body.light-mode .email-card:hover .contact-info p {
-    color: var(--blue) !important; /* Assurer la lisibilité de l'adresse email */
+body.light-mode .email-card:hover .contact-info p,
+[data-theme="light"] .email-card:hover .contact-info p {
+    color: var(--blue);
 }
 
-/* =========================================
-   FOOTER
-   ========================================= */
+/* ----- FOOTER ----- */
 .footer {
     display: flex;
     justify-content: center;
@@ -1392,8 +1298,13 @@ body.light-mode .email-card:hover .contact-info p {
 }
 
 /* =========================================
-   ANIMATIONS
+   6. ANIMATIONS
    ========================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .animate-section {
     opacity: 0;
     transform: translateY(20px);
@@ -1405,15 +1316,28 @@ body.light-mode .email-card:hover .contact-info p {
     transform: translateY(0);
 }
 
-/* Animation séquentielle */
+/* Animation séquentielle des projets */
 #project1 { transition-delay: 0.1s; }
 #project2 { transition-delay: 0.2s; }
 #project3 { transition-delay: 0.3s; }
 #project4 { transition-delay: 0.4s; }
 #project5 { transition-delay: 0.5s; }
 
+/* Animation optimisée - transition zéro délai */
+#course-projects, 
+#personal-projects,
+.project-tab,
+.project-card,
+.card-image,
+.static-image,
+.hover-video,
+.tags span,
+.github-link {
+    transition-delay: 0s;
+}
+
 /* =========================================
-   CLASSES UTILITAIRES
+   7. UTILITAIRES
    ========================================= */
 .text-center { text-align: center; }
 .w-100 { width: 100%; }
@@ -1421,7 +1345,7 @@ body.light-mode .email-card:hover .contact-info p {
 .flex-column-mobile { display: flex; }
 
 /* =========================================
-   RESPONSIVE
+   8. MEDIA QUERIES
    ========================================= */
 /* Grands écrans */
 @media screen and (max-width: 1200px) {
@@ -1475,6 +1399,7 @@ body.light-mode .email-card:hover .contact-info p {
     }
 }
 
+/* Tablettes et petits écrans */
 @media screen and (max-width: 992px) {
     .presentation-card {
         flex-direction: column;
@@ -1597,30 +1522,34 @@ body.light-mode .email-card:hover .contact-info p {
         transform: translateY(-9px) rotate(-45deg);
     }
     
-    /* Fix mode clair pour mobile */
-    body.light-mode .nav-elements {
+    /* Adaptations pour thème clair */
+    body.light-mode .nav-elements,
+    [data-theme="light"] .nav-elements {
         background-color: var(--bg-header);
     }
     
-    body.light-mode .nav-elements .nav-links .nav-item {
+    body.light-mode .nav-elements .nav-links .nav-item,
+    [data-theme="light"] .nav-elements .nav-links .nav-item {
         color: var(--text-primary);
     }
     
-    body.light-mode .nav-elements .nav-links .nav-item:hover:not(.active) {
+    body.light-mode .nav-elements .nav-links .nav-item:hover:not(.active),
+    [data-theme="light"] .nav-elements .nav-links .nav-item:hover:not(.active) {
         color: var(--blue);
     }
     
-    body.light-mode .nav-elements .nav-links .nav-item.active {
+    body.light-mode .nav-elements .nav-links .nav-item.active,
+    [data-theme="light"] .nav-elements .nav-links .nav-item.active {
         color: var(--blue);
     }
     
     /* Typewriter responsive */
     .role-container {
-        min-height: 50px;
+        min-height: 60px;
     }
     
     .subtitle {
-        font-size: clamp(16px, 2.2vw, 20px);
+        font-size: clamp(15px, 2vw, 20px);
     }
     
     .typewriter {
@@ -1645,15 +1574,6 @@ body.light-mode .email-card:hover .contact-info p {
         order: 0;
     }
     
-    /* Corrections diverses */
-    .role-container {
-        min-height: 60px;
-    }
-    
-    .subtitle {
-        font-size: clamp(15px, 2vw, 20px);
-    }
-    
     .presentation-card {
         width: 95% !important;
         margin: 0 auto;
@@ -1668,13 +1588,31 @@ body.light-mode .email-card:hover .contact-info p {
     .contact-card, .skill-category {
         flex: 1 1 100%;
     }
+    
+    /* Onglets projets */
+    .projects-tabs {
+        flex-direction: row;
+        width: 100%;
+        padding: 0 20px;
+        gap: 10px;
+    }
+    
+    .project-tab {
+        flex: 1;
+        padding: 8px 12px;
+        font-size: 14px;
+        text-align: center;
+    }
 }
 
-/* Très petits écrans */
+/* Petits écrans et mobiles */
 @media screen and (max-width: 480px) {
     .profile-frame {
         width: 150px;
         height: 150px;
+        margin-right: 0;
+        justify-content: center;
+        text-align: center;
     }
     
     .content-column {
@@ -1714,69 +1652,6 @@ body.light-mode .email-card:hover .contact-info p {
         flex-direction: column;
         width: 100%;
         max-width: 300px;
-    }
-    
-    .profile-frame {
-        margin-right: 0;
-        justify-content: center;
-        text-align: center;
-    }
-    
-    .contact-card, .github-card, .linkedin-card, .email-card {
-        max-width: 90%;
-    }
-}
-
-/* Petits écrans */
-@media screen and (max-width: 480px) {
-    .profile-frame {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .content-column {
-        padding: 30px 20px;
-        width: 90%;
-    }
-    
-    .name-headline {
-        font-size: 30px;
-    }
-    
-    .subtitle {
-        font-size: 18px;
-    }
-    
-    .section-title {
-        padding: 10px 20px;
-        width: 90%;
-    }
-    
-    .section-title h2 {
-        font-size: clamp(22px, 5vw, 26px);
-        margin: 0 10px;
-    }
-    
-    .title-decoration {
-        width: 15px;
-    }
-    
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .profile-frame {
-        margin-right: 0;
-        justify-content: center;
-        text-align: center;
     }
     
     .contact-card, .github-card, .linkedin-card, .email-card {

@@ -1,266 +1,340 @@
 /**
- * Script principal - Portfolio d'Alexandre Joly
- * Version optimisée et nettoyée
+ * Portfolio d'Alexandre Joly - Script principal
+ * Version refactorisée pour maintenabilité et lisibilité améliorées
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Éléments DOM fréquemment utilisés
-  const elements = {
+  // Récupération des éléments DOM utilisés fréquemment avec vérification de leur existence
+  const elements = selectDomElements();
+
+  // Configuration du menu mobile
+  setupMobileMenu(elements);
+
+  // Configuration du thème
+  setupThemeToggle(elements);
+
+  // Configuration des animations
+  setupAnimations();
+
+  // Configuration de la navigation
+  setupNavigation(elements);
+
+  // Configuration des onglets de projets
+  setupProjectTabs(elements);
+
+  // Configuration des vidéos au survol
+  setupHoverVideos();
+
+  // Optimisations de performance
+  applyPerformanceOptimizations();
+});
+
+/**
+ * Sélectionne et retourne les éléments DOM utilisés fréquemment
+ * @returns {Object} Éléments DOM
+ */
+function selectDomElements() {
+  return {
     body: document.body,
+    html: document.documentElement, // Ajout pour permettre [data-theme] plutôt que des classes
     menuToggle: document.getElementById("menuToggle"),
     navElements: document.querySelector(".nav-elements"),
     themeToggle: document.getElementById("themeToggle"),
+    themeIcon: document.querySelector("#themeToggle i"),
     navLinks: document.querySelectorAll(".nav-item"),
     sections: document.querySelectorAll("section"),
     projectTabs: document.querySelectorAll(".project-tab"),
     projectGrids: document.querySelectorAll(".projects-grid"),
+    projectCards: document.querySelectorAll(".project-card"),
   };
+}
 
-  const themeIcon = elements.themeToggle?.querySelector("i");
+/**
+ * Configure le menu mobile
+ * @param {Object} elements - Les éléments DOM
+ */
+function setupMobileMenu({ menuToggle, navElements, navLinks }) {
+  if (!menuToggle || !navElements) return;
 
-  // Navigation mobile
-  if (elements.menuToggle && elements.navElements) {
-    // Ouvrir/fermer le menu mobile
-    elements.menuToggle.addEventListener("click", () => {
-      elements.menuToggle.classList.toggle("active");
-      elements.navElements.classList.toggle("active");
+  // Gestion de l'ouverture/fermeture du menu mobile
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navElements.classList.toggle("active");
+  });
+
+  // Fermer le menu après clic sur un lien
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      menuToggle.classList.remove("active");
+      navElements.classList.remove("active");
     });
+  });
+}
 
-    // Fermer le menu après clic sur un lien
-    elements.navLinks.forEach((link) =>
-      link.addEventListener("click", () => {
-        elements.menuToggle.classList.remove("active");
-        elements.navElements.classList.remove("active");
-      })
-    );
-  }
+/**
+ * Configure le thème et les basculements de thème
+ * @param {Object} elements - Les éléments DOM
+ */
+function setupThemeToggle({ body, html, themeToggle, themeIcon }) {
+  if (!themeToggle || !themeIcon) return;
 
-  // Gestion du thème
-  if (elements.themeToggle && themeIcon) {
-    // Fonction pour mettre à jour l'icône selon le thème
-    const updateThemeIcon = (isLightMode) => {
-      themeIcon.className = isLightMode ? "fas fa-moon" : "fas fa-sun";
+  // Chargement du thème sauvegardé et détection des préférences
+  const savedTheme = localStorage.getItem("theme");
+  const prefersDarkMode = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  const isLightMode = savedTheme ? savedTheme === "light" : !prefersDarkMode;
 
-      // Mettre à jour les logos Roblox selon le thème
-      document.querySelectorAll(".game-link img").forEach((img) => {
-        if (img.alt === "Roblox") {
-          img.src = isLightMode
-            ? "./assets/svg/Roblox-light.svg"
-            : "./assets/svg/Roblox-dark.svg";
+  // Application du thème initial
+  applyTheme(isLightMode, body, html, themeIcon);
+
+  // Changement de thème au clic
+  themeToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    const newLightMode = body.classList.toggle("light-mode");
+    html.setAttribute("data-theme", newLightMode ? "light" : "dark"); // Utilisation d'attributs data
+    localStorage.setItem("theme", newLightMode ? "light" : "dark");
+    updateThemeIcon(newLightMode, themeIcon);
+    updateRobloxLogos(newLightMode);
+  });
+}
+
+/**
+ * Applique le thème initial
+ * @param {boolean} isLightMode - True si mode clair
+ * @param {HTMLElement} body - Élément body
+ * @param {HTMLElement} html - Élément html
+ * @param {HTMLElement} themeIcon - Icône du thème
+ */
+function applyTheme(isLightMode, body, html, themeIcon) {
+  body.classList.toggle("light-mode", isLightMode);
+  html.setAttribute("data-theme", isLightMode ? "light" : "dark");
+  updateThemeIcon(isLightMode, themeIcon);
+  updateRobloxLogos(isLightMode);
+}
+
+/**
+ * Met à jour l'icône de thème
+ * @param {boolean} isLightMode - True si mode clair
+ * @param {HTMLElement} themeIcon - Icône du thème
+ */
+function updateThemeIcon(isLightMode, themeIcon) {
+  themeIcon.className = isLightMode ? "fas fa-moon" : "fas fa-sun";
+}
+
+/**
+ * Met à jour les logos Roblox pour correspondre au thème
+ * @param {boolean} isLightMode - True si mode clair
+ */
+function updateRobloxLogos(isLightMode) {
+  document.querySelectorAll(".game-link img").forEach((img) => {
+    if (img.alt === "Roblox") {
+      img.src = isLightMode
+        ? "./assets/svg/Roblox-light.svg"
+        : "./assets/svg/Roblox-dark.svg";
+    }
+  });
+}
+
+/**
+ * Configure les animations au défilement
+ */
+function setupAnimations() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible", "show");
         }
       });
-    };
+    },
+    { threshold: 0.1 }
+  );
 
-    // Chargement du thème sauvegardé
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const isLightMode = savedTheme ? savedTheme === "light" : !prefersDarkMode;
+  // Observer tous les éléments animés
+  document
+    .querySelectorAll(".animate-section, .project-card, .section-title")
+    .forEach((el) => observer.observe(el));
 
-    elements.body.classList.toggle("light-mode", isLightMode);
-    updateThemeIcon(isLightMode);
+  // Animation spéciale pour la carte de présentation
+  setTimeout(() => {
+    const card = document.querySelector(".presentation-card");
+    if (card) card.classList.add("show");
+  }, 500);
+}
 
-    // Changement de thème au clic
-    elements.themeToggle.addEventListener("click", (e) => {
-      e.preventDefault();
-      const isLightMode = elements.body.classList.toggle("light-mode");
-      localStorage.setItem("theme", isLightMode ? "light" : "dark");
-      updateThemeIcon(isLightMode);
-    });
-  }
+/**
+ * Configure la navigation active
+ * @param {Object} elements - Les éléments DOM
+ */
+function setupNavigation({ sections, navLinks }) {
+  const updateActiveNavLink = () => {
+    const scrollPosition = window.scrollY + 100;
+    let currentSection = "";
 
-  // Animation des éléments au scroll
-  const setupAnimations = () => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible", "show");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    // Identifier la section visible
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
 
-    // Observer les éléments animés
-    document
-      .querySelectorAll(".animate-section, .project-card, .section-title")
-      .forEach((el) => observer.observe(el));
-
-    // Animation de la carte de présentation
-    setTimeout(() => {
-      const card = document.querySelector(".presentation-card");
-      if (card) card.classList.add("show");
-    }, 500);
-  };
-
-  // Navigation active
-  const setupNavigation = () => {
-    function setActiveNavLink() {
-      const scrollPosition = window.scrollY + 100;
-      let currentSection = "";
-
-      // Identifier la section visible
-      elements.sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (
-          scrollPosition >= sectionTop &&
-          scrollPosition < sectionTop + sectionHeight
-        ) {
-          currentSection = section.getAttribute("id");
-        }
-      });
-
-      // Mettre à jour les classes actives
-      elements.navLinks.forEach((link) => {
-        const href = link.getAttribute("href").substring(1);
-        link.classList.toggle("active", href === currentSection);
-      });
-
-      // Cas spécial: au début de la page, activer Home
-      if (scrollPosition < 300) {
-        elements.navLinks.forEach((link) => {
-          link.classList.toggle(
-            "active",
-            link.getAttribute("href") === "#home"
-          );
-        });
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight
+      ) {
+        currentSection = section.getAttribute("id");
       }
+    });
+
+    // Cas spécial: début de la page
+    if (scrollPosition < 300) {
+      currentSection = "home";
     }
 
-    // Initialiser et surveiller le défilement
-    setActiveNavLink();
-    window.addEventListener("scroll", setActiveNavLink);
-
-    // Gestion des clics sur les liens de navigation
-    elements.navLinks.forEach((link) => {
-      link.addEventListener("click", function () {
-        elements.navLinks.forEach((navLink) =>
-          navLink.classList.remove("active")
-        );
-        this.classList.add("active");
-      });
+    // Mettre à jour les classes actives
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href").substring(1);
+      link.classList.toggle("active", href === currentSection);
     });
   };
 
-  // Gestion des onglets de projets
-  if (elements.projectTabs.length > 0) {
-    elements.projectTabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        // Retirer la classe active de tous les onglets
-        elements.projectTabs.forEach((t) => t.classList.remove("active"));
+  // Initialiser et surveiller le défilement
+  updateActiveNavLink();
+  window.addEventListener("scroll", updateActiveNavLink);
 
-        // Ajouter la classe active à l'onglet cliqué
-        tab.classList.add("active");
+  // Gestion des clics sur les liens de navigation
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      navLinks.forEach((navLink) => navLink.classList.remove("active"));
+      this.classList.add("active");
+    });
+  });
+}
 
-        // Récupérer l'ID cible
-        const targetId = tab.getAttribute("data-target");
+/**
+ * Configure les onglets de projets
+ * @param {Object} elements - Les éléments DOM
+ */
+function setupProjectTabs({ projectTabs, projectGrids }) {
+  if (projectTabs.length === 0) return;
 
-        // Cacher toutes les grilles de projets
-        elements.projectGrids.forEach((grid) => {
-          grid.style.display = "none";
-        });
+  projectTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Mise à jour des classes actives
+      projectTabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
 
-        // Afficher la grille cible
-        const targetGrid = document.getElementById(targetId);
-        if (targetGrid) {
-          targetGrid.style.display = "grid";
+      // Récupération de la cible
+      const targetId = tab.getAttribute("data-target");
 
-          // Animer l'apparition des cartes de projet
-          const projectCards = targetGrid.querySelectorAll(".project-card");
-          projectCards.forEach((card, index) => {
-            card.classList.remove("show");
-            setTimeout(() => {
-              card.classList.add("show");
-            }, 100 * index);
-          });
-        }
+      // Masquer toutes les grilles
+      projectGrids.forEach((grid) => {
+        grid.style.display = "none";
       });
+
+      // Afficher la grille cible
+      const targetGrid = document.getElementById(targetId);
+      if (targetGrid) {
+        targetGrid.style.display = "grid";
+        animateProjectCards(targetGrid);
+      }
+    });
+  });
+}
+
+/**
+ * Anime les cartes de projet avec un délai séquentiel
+ * @param {HTMLElement} targetGrid - La grille de projets cible
+ */
+function animateProjectCards(targetGrid) {
+  const projectCards = targetGrid.querySelectorAll(".project-card");
+  projectCards.forEach((card, index) => {
+    card.classList.remove("show");
+    setTimeout(() => {
+      card.classList.add("show");
+    }, 100 * index);
+  });
+}
+
+/**
+ * Configure les vidéos au survol
+ */
+function setupHoverVideos() {
+  const projectCards = document.querySelectorAll(".project-card");
+
+  projectCards.forEach((card) => {
+    const video = card.querySelector(".hover-video");
+    if (!video) return;
+
+    // Préchargement des vidéos
+    preloadVideo(video);
+
+    // Gestion du survol
+    card.addEventListener("mouseenter", () => playVideo(video));
+    card.addEventListener("mouseleave", () => pauseVideo(video));
+  });
+}
+
+/**
+ * Précharge une vidéo
+ * @param {HTMLVideoElement} video - L'élément vidéo
+ */
+function preloadVideo(video) {
+  if (video.readyState === 0) {
+    video.load();
+    video.preload = "auto";
+  }
+}
+
+/**
+ * Joue une vidéo avec gestion d'erreur
+ * @param {HTMLVideoElement} video - L'élément vidéo
+ */
+function playVideo(video) {
+  video.currentTime = 0;
+  const playPromise = video.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch((error) => {
+      console.log("Autoplay prevented:", error);
     });
   }
+}
 
-  // Gestion des vidéos au survol - optimisée
-  const setupHoverVideos = () => {
-    const projectCards = document.querySelectorAll(".project-card");
+/**
+ * Met en pause une vidéo
+ * @param {HTMLVideoElement} video - L'élément vidéo
+ */
+function pauseVideo(video) {
+  video.pause();
+}
 
-    projectCards.forEach((card) => {
-      const video = card.querySelector(".hover-video");
-      if (!video) return;
+/**
+ * Applique diverses optimisations de performance
+ */
+function applyPerformanceOptimizations() {
+  // Marqueur pour les animations
+  document.body.classList.add("animations-ready");
 
-      // Préchargement des vidéos
-      if (video.readyState === 0) {
-        video.load();
-        video.preload = "auto";
+  // Préchargement des états de survol pour les cartes
+  document.querySelectorAll(".project-card").forEach((card) => {
+    card.classList.add("hover-ready");
+
+    // Délai pour permettre le rendu initial
+    setTimeout(() => {
+      if (!card.classList.contains("show")) {
+        card.classList.add("show");
       }
+    }, 100);
+  });
 
-      // Lecture optimisée au survol
-      card.addEventListener("mouseenter", () => {
-        // Position immédiate au début pour démarrage instantané
-        video.currentTime = 0;
-
-        // Lecture instantanée de la vidéo
-        const playPromise = video.play();
-
-        // Gestion propre des promesses de lecture
-        if (playPromise !== undefined) {
-          playPromise.catch((e) => {
-            console.log("Lecture automatique empêchée:", e);
-          });
-        }
-      });
-
-      // Optimisation pour réduire la charge CPU lors de la sortie du survol
-      card.addEventListener("mouseleave", () => {
-        video.pause();
-      });
+  // Optimisation des transitions
+  document.querySelectorAll(".project-card").forEach((card) => {
+    card.addEventListener("transitionstart", () => {
+      card.classList.add("transitioning");
     });
-  };
 
-  // Optimisation des animations au chargement
-  const setupFastAnimations = () => {
-    // Ajouter une classe d'optimisation au body
-    document.body.classList.add("animations-ready");
-
-    // Précharger les états de survol pour toutes les cartes
-    document.querySelectorAll(".project-card").forEach((card) => {
-      // Ajouter classe d'optimisation
-      card.classList.add("hover-ready");
-
-      // Précharger l'état de survol avec un délai de 100ms
-      setTimeout(() => {
-        if (!card.classList.contains("show")) {
-          card.classList.add("show");
-        }
-      }, 100);
+    card.addEventListener("transitionend", () => {
+      card.classList.remove("transitioning");
     });
-  };
-
-  // Optimisation des images et des transitions
-  const optimizeCardTransitions = () => {
-    // Sélectionner toutes les cartes de projet
-    const cards = document.querySelectorAll(".project-card");
-
-    // Ajouter des gestionnaires d'événements optimisés
-    cards.forEach((card) => {
-      card.addEventListener("transitionstart", (e) => {
-        // Ajouter une classe pendant les transitions
-        card.classList.add("transitioning");
-      });
-
-      card.addEventListener("transitionend", (e) => {
-        // Retirer la classe après la transition
-        card.classList.remove("transitioning");
-      });
-    });
-  };
-
-  // Initialiser toutes les fonctionnalités avec optimisation
-  setupAnimations();
-  setupNavigation();
-  setupHoverVideos();
-  setupFastAnimations();
-  optimizeCardTransitions();
-});
+  });
+}
