@@ -822,6 +822,37 @@ section {
     border-color: rgba(0, 201, 246, 0.5);
 }
 
+/* Styles pour la vidéo au survol */
+.card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.static-image,
+.hover-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: opacity 0.4s ease;
+}
+
+.hover-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+}
+
+.project-card:hover .static-image {
+    opacity: 0.2;
+}
+
+.project-card:hover .hover-video {
+    opacity: 1;
+}
+
 .card-image {
     height: clamp(200px, 30vw, 300px);
     background-color: #0a0a10;
@@ -923,6 +954,92 @@ section {
     0% { box-shadow: 0 0 0 0 rgba(0, 201, 246, 0.4); }
     70% { box-shadow: 0 0 0 10px rgba(0, 201, 246, 0); }
     100% { box-shadow: 0 0 0 0 rgba(0, 201, 246, 0); }
+}
+
+/* =========================================
+   PROJECTS TABS
+   ========================================= */
+.projects-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.project-tab {
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-family: var(--font-title);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: var(--bg-section);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.project-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 201, 246, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-tab:hover::before,
+.project-tab.active::before {
+    opacity: 1;
+}
+
+.project-tab.active {
+    background-color: rgba(0, 201, 246, 0.1);
+    border-color: var(--blue);
+    color: var(--blue);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 201, 246, 0.15);
+}
+
+.project-tab:hover:not(.active) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 201, 246, 0.1);
+}
+
+/* Animation d'apparition en fondu pour les grilles de projets */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.projects-grid {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Responsive pour les onglets */
+@media screen and (max-width: 768px) {
+    .projects-tabs {
+        flex-direction: row;
+        width: 100%;
+        padding: 0 20px;
+        gap: 10px;
+    }
+    
+    .project-tab {
+        flex: 1;
+        padding: 8px 12px;
+        font-size: 14px;
+        text-align: center;
+    }
 }
 
 /* =========================================

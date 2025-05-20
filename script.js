@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggle: document.getElementById("themeToggle"),
     navLinks: document.querySelectorAll(".nav-item"),
     sections: document.querySelectorAll("section"),
+    projectTabs: document.querySelectorAll(".project-tab"),
+    projectGrids: document.querySelectorAll(".projects-grid"),
   };
 
   const themeIcon = elements.themeToggle?.querySelector("i");
@@ -135,7 +137,63 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // Gestion des onglets de projets
+  if (elements.projectTabs.length > 0) {
+    elements.projectTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        // Retirer la classe active de tous les onglets
+        elements.projectTabs.forEach((t) => t.classList.remove("active"));
+
+        // Ajouter la classe active à l'onglet cliqué
+        tab.classList.add("active");
+
+        // Récupérer l'ID cible
+        const targetId = tab.getAttribute("data-target");
+
+        // Cacher toutes les grilles de projets
+        elements.projectGrids.forEach((grid) => {
+          grid.style.display = "none";
+        });
+
+        // Afficher la grille cible
+        const targetGrid = document.getElementById(targetId);
+        if (targetGrid) {
+          targetGrid.style.display = "grid";
+
+          // Animer l'apparition des cartes de projet
+          const projectCards = targetGrid.querySelectorAll(".project-card");
+          projectCards.forEach((card, index) => {
+            card.classList.remove("show");
+            setTimeout(() => {
+              card.classList.add("show");
+            }, 100 * index);
+          });
+        }
+      });
+    });
+  }
+
+  // Gestion des vidéos au survol
+  const setupHoverVideos = () => {
+    const projectCards = document.querySelectorAll(".project-card");
+
+    projectCards.forEach((card) => {
+      const video = card.querySelector(".hover-video");
+      if (!video) return;
+
+      card.addEventListener("mouseenter", () => {
+        video.currentTime = 0; // Commence toujours au début
+        video.play().catch((e) => console.log("Autoplay prevented:", e));
+      });
+
+      card.addEventListener("mouseleave", () => {
+        video.pause();
+      });
+    });
+  };
+
   // Initialiser toutes les fonctionnalités
   setupAnimations();
   setupNavigation();
+  setupHoverVideos(); // Ajouter l'initialisation des vidéos
 });

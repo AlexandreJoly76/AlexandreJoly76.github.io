@@ -183,7 +183,15 @@
                 <span class="title-decoration"></span>
             </div>
         </div>
-        <div class="projects-grid">
+        
+        <!-- Nouvelle barre d'onglets pour choisir le type de projets -->
+        <div class="projects-tabs">
+            <button class="project-tab active" data-target="course-projects">Course Projects</button>
+            <button class="project-tab" data-target="personal-projects">Personal Projects</button>
+        </div>
+        
+        <!-- Conteneur des projets de cursus (déjà existant) -->
+        <div class="projects-grid" id="course-projects">
             <div class="project-card" id="project1">
                 <div class="card-image">
                     <img src="./assets/img/Aniverse.png" alt="Aniverse Forum">
@@ -287,6 +295,55 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Nouveau conteneur pour les projets personnels -->
+        <div class="projects-grid" id="personal-projects" style="display: none;">
+            <div class="project-card" id="personal1">
+                <div class="card-image">
+                    <img src="./assets/img/fetchcountries.png" alt="Countries API Explorer" class="static-image">
+                    <video class="hover-video" src="./assets/video/fetchcountriesvideo.webm" muted loop></video>
+                </div>
+                <div class="card-content">
+                    <h3>Countries API Explorer</h3>
+                    <p>Web application for exploring countries around the world using a REST API. Features search functionality, filtering, and detailed country information display.</p>
+                    <div class="tags">
+                        <span>JavaScript</span>
+                        <span>Fetch API</span>
+                        <span>HTML/CSS</span>
+                        <span>Responsive</span>
+                        <span>REST API</span>
+                    </div>
+                    <div class="card-links">
+                        <a href=https://github.com/AlexandreJoly76/Fetchcountries target="_blank" class="github-link">
+                            <img src="./assets/svg/Github.svg" alt="GitHub">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Template pour ajouter d'autres projets personnels -->
+            <!-- 
+            <div class="project-card">
+                <div class="card-image">
+                    <img src="./assets/img/your-project-image.png" alt="Project Title">
+                </div>
+                <div class="card-content">
+                    <h3>Project Title</h3>
+                    <p>Description of your personal project goes here.</p>
+                    <div class="tags">
+                        <span>Tag1</span>
+                        <span>Tag2</span>
+                        <span>Tag3</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/username/repo" target="_blank" class="github-link">
+                            <img src="./assets/svg/Github.svg" alt="GitHub">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            -->
         </div>
     </section>
 
