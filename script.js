@@ -40,6 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fonction pour mettre à jour l'icône selon le thème
     const updateThemeIcon = (isLightMode) => {
       themeIcon.className = isLightMode ? "fas fa-moon" : "fas fa-sun";
+
+      // Mettre à jour les logos Roblox selon le thème
+      document.querySelectorAll(".game-link img").forEach((img) => {
+        if (img.alt === "Roblox") {
+          img.src = isLightMode
+            ? "./assets/svg/Roblox-light.svg"
+            : "./assets/svg/Roblox-dark.svg";
+        }
+      });
     };
 
     // Chargement du thème sauvegardé

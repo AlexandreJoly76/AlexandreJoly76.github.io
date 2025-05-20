@@ -975,6 +975,35 @@ section {
     transform: translate3d(0, 0, 0); /* Force l'accélération matérielle */
 }
 
+/* Nouveau style pour les liens de jeux */
+.game-link::after {
+    content: "View Game" !important; /* Remplacer "View Code" par "View Game" */
+}
+
+/* Styles pour les liens de jeux Roblox */
+.game-link img {
+    color: inherit; /* Utiliser la couleur héritée plutôt que de forcer une couleur */
+}
+
+/* En mode clair, le logo devient noir */
+body.light-mode .game-link img {
+    color: inherit; /* Utiliser la couleur héritée plutôt que de forcer une couleur */
+}
+
+.game-link:hover img {
+    transform: scale(1.15) rotate(10deg); /* Effet légèrement différent de GitHub */
+}
+
+/* Style spécifique et direct pour le logo Roblox */
+.roblox-logo {
+    fill: white !important; /* Force la couleur blanche en mode sombre */
+}
+
+/* En mode clair, forcer la couleur noire */
+body.light-mode .roblox-logo {
+    fill: black !important;
+}
+
 /* =========================================
    PROJECTS TABS
    ========================================= */
