@@ -8,7 +8,7 @@
     --blue-hover: #33D4F8;
     --blue-active: #0097B8;
     --radius: 20px;
-    --transition: all 0.3s ease;
+    --transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transition encore plus rapide */
     --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     
     /* Typographie */
@@ -795,6 +795,7 @@ section {
     max-width: 1400px;
     margin: 0 auto;
     padding: clamp(10px, 2vw, 20px);
+    contain: layout style; /* Optimisation des performances de rendu */
 }
 
 .project-card {
@@ -807,8 +808,18 @@ section {
     flex-direction: column;
     opacity: 0;
     transform: translateY(30px);
-    transition: var(--transition);
+    transition: 
+        transform 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+        border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 0.6s ease-out;
     cursor: pointer;
+    will-change: transform, box-shadow; 
+    transform: translateY(0); /* Valeur initiale explicite */
+    backface-visibility: hidden; /* Améliore les performances de rendu */
+    -webkit-font-smoothing: subpixel-antialiased; /* Améliore le rendu du texte */
+    contain: content; /* Isolation pour optimiser les performances */
+    transform-style: preserve-3d; /* Améliore les performances 3D */
 }
 
 .project-card.show {
@@ -816,6 +827,7 @@ section {
     transform: translateY(0);
 }
 
+/* État hover instantané */
 .project-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 30px rgba(0, 201, 246, 0.2);
@@ -829,6 +841,8 @@ section {
     height: clamp(200px, 30vw, 300px);
     background-color: #0a0a10;
     border-bottom: 1px solid rgba(0, 201, 246, 0.15);
+    transform: translateZ(0); /* Force l'accélération matérielle */
+    contain: strict; /* Isolation complète pour performance */
 }
 
 .static-image,
@@ -837,10 +851,12 @@ section {
     height: 100%;
     object-fit: contain;
     object-position: center;
+    transition: opacity 0.2s ease !important;
+    transform: translateZ(0); /* Force l'accélération matérielle */
 }
 
 .static-image {
-    transition: opacity 0.8s ease;
+    transition: opacity 0.4s ease;
     position: relative;
     z-index: 1;
 }
@@ -851,10 +867,10 @@ section {
     left: 0;
     opacity: 0;
     z-index: 2;
-    transition: opacity 0.8s ease; /* Plus lente pour une transition douce */
+    transition: opacity 0.4s ease;
 }
 
-/* État de survol optimisé */
+/* État hover immédiat pour les images */
 .project-card:hover .static-image {
     opacity: 0;
 }
@@ -900,7 +916,7 @@ section {
     font-size: 12px;
     font-weight: 500;
     border: 1px solid rgba(0, 201, 246, 0.2);
-    transition: var(--transition);
+    transition: transform 0.1s ease, background-color 0.1s ease; /* Encore plus rapide */
 }
 
 .tags span:hover {
@@ -950,6 +966,13 @@ section {
     0% { box-shadow: 0 0 0 0 rgba(0, 201, 246, 0.4); }
     70% { box-shadow: 0 0 0 10px rgba(0, 201, 246, 0); }
     100% { box-shadow: 0 0 0 0 rgba(0, 201, 246, 0); }
+}
+
+/* Optimisations avancées pour toutes les cartes de projet */
+#course-projects .project-card,
+#personal-projects .project-card {
+    /* Pré-charge l'état hover pour éliminer le délai */
+    transform: translate3d(0, 0, 0); /* Force l'accélération matérielle */
 }
 
 /* =========================================
@@ -1036,6 +1059,20 @@ section {
         font-size: 14px;
         text-align: center;
     }
+}
+
+/* Optimisation globale des transitions */
+#course-projects, 
+#personal-projects,
+.project-tab,
+.project-card,
+.card-image,
+.static-image,
+.hover-video,
+.tags span,
+.github-link {
+    /* Optimisation pour toutes les animations */
+    transition-delay: 0s !important; /* Éliminer tout délai */
 }
 
 /* =========================================
@@ -1161,7 +1198,7 @@ section {
 
 .contact-info p {
     font-size: clamp(14px, 1.5vw, 16px);
-    color: var(--text-secondary);
+    color: var (--text-secondary);
     margin-bottom: 0;
 }
 

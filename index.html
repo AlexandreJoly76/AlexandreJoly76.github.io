@@ -14,6 +14,9 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Optimisation des performances -->
+    <link rel="preload" as="script" href="assets/js/performance-boost.js">
 </head>
 <body>
     <header class="header">
@@ -216,7 +219,8 @@
             
             <div class="project-card" id="project2">
                 <div class="card-image">
-                    <img src="./assets/img/Makeyourgame.png" alt="Make Your Game">
+                    <img src="./assets/img/Makeyourgame.png" alt="Make Your Game" class="static-image">
+                    <video class="hover-video" src="./assets/video/make-your-game-video.mp4" muted loop></video>
                 </div>
                 <div class="card-content">
                     <h3>Make Your Game</h3>
@@ -257,7 +261,8 @@
             
             <div class="project-card" id="project4">
                 <div class="card-image">
-                    <img src="./assets/img/groupieTracker.png" alt="Groupie Tracker">
+                    <img src="./assets/img/groupieTracker.png" alt="Groupie Tracker" class="static-image">
+                    <video class="hover-video" src="./assets/video/groupie-tracker-video.mp4" muted loop></video>
                 </div>
                 <div class="card-content">
                     <h3>Groupie Tracker</h3>
@@ -407,5 +412,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="assets/js/performance-boost.js"></script>
 </body>
 </html>

@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Gestion des vidéos au survol
+  // Gestion des vidéos au survol - optimisée
   const setupHoverVideos = () => {
     const projectCards = document.querySelectorAll(".project-card");
 
@@ -181,19 +181,77 @@ document.addEventListener("DOMContentLoaded", () => {
       const video = card.querySelector(".hover-video");
       if (!video) return;
 
+      // Préchargement des vidéos
+      if (video.readyState === 0) {
+        video.load();
+        video.preload = "auto";
+      }
+
+      // Lecture optimisée au survol
       card.addEventListener("mouseenter", () => {
-        video.currentTime = 0; // Commence toujours au début
-        video.play().catch((e) => console.log("Autoplay prevented:", e));
+        // Position immédiate au début pour démarrage instantané
+        video.currentTime = 0;
+
+        // Lecture instantanée de la vidéo
+        const playPromise = video.play();
+
+        // Gestion propre des promesses de lecture
+        if (playPromise !== undefined) {
+          playPromise.catch((e) => {
+            console.log("Lecture automatique empêchée:", e);
+          });
+        }
       });
 
+      // Optimisation pour réduire la charge CPU lors de la sortie du survol
       card.addEventListener("mouseleave", () => {
         video.pause();
       });
     });
   };
 
-  // Initialiser toutes les fonctionnalités
+  // Optimisation des animations au chargement
+  const setupFastAnimations = () => {
+    // Ajouter une classe d'optimisation au body
+    document.body.classList.add("animations-ready");
+
+    // Précharger les états de survol pour toutes les cartes
+    document.querySelectorAll(".project-card").forEach((card) => {
+      // Ajouter classe d'optimisation
+      card.classList.add("hover-ready");
+
+      // Précharger l'état de survol avec un délai de 100ms
+      setTimeout(() => {
+        if (!card.classList.contains("show")) {
+          card.classList.add("show");
+        }
+      }, 100);
+    });
+  };
+
+  // Optimisation des images et des transitions
+  const optimizeCardTransitions = () => {
+    // Sélectionner toutes les cartes de projet
+    const cards = document.querySelectorAll(".project-card");
+
+    // Ajouter des gestionnaires d'événements optimisés
+    cards.forEach((card) => {
+      card.addEventListener("transitionstart", (e) => {
+        // Ajouter une classe pendant les transitions
+        card.classList.add("transitioning");
+      });
+
+      card.addEventListener("transitionend", (e) => {
+        // Retirer la classe après la transition
+        card.classList.remove("transitioning");
+      });
+    });
+  };
+
+  // Initialiser toutes les fonctionnalités avec optimisation
   setupAnimations();
   setupNavigation();
-  setupHoverVideos(); // Ajouter l'initialisation des vidéos
+  setupHoverVideos();
+  setupFastAnimations();
+  optimizeCardTransitions();
 });
