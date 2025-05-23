@@ -276,7 +276,7 @@ section {
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--text-primary);
+    color: var (--text-primary);
     border: 2px solid var(--blue);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -889,10 +889,9 @@ body.light-mode .skill-item img[alt="Notion"] {
     flex-direction: column;
     opacity: 0;
     transform: translateY(30px);
-    transition: transform 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-                box-shadow 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-                border-color 0.15s cubic-bezier(0.19, 1, 0.22, 1),
-                opacity 0.6s ease-out;
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0s linear !important;
     cursor: pointer;
     will-change: transform, box-shadow;
     transform: translateY(0);
@@ -910,7 +909,16 @@ body.light-mode .skill-item img[alt="Notion"] {
 .project-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 30px rgba(0, 201, 246, 0.2);
-    border-color: rgba(0, 201, 246, 0.5);
+    border-color: rgba(0, 201, 246, 0.5) !important;
+}
+
+/* Correction des problèmes de hover sur les cartes */
+.project-card:hover .static-image {
+    opacity: 0 !important;
+}
+
+.project-card:hover .hover-video {
+    opacity: 1 !important;
 }
 
 /* Image et vidéo de la carte */
@@ -922,6 +930,19 @@ body.light-mode .skill-item img[alt="Notion"] {
     border-bottom: 1px solid rgba(0, 201, 246, 0.15);
     transform: translateZ(0);
     contain: strict;
+    will-change: transform;
+}
+
+/* Solution pour les cartes sans vidéo réelle */
+.card-image .hover-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.2s ease !important;
 }
 
 .static-image,
@@ -930,7 +951,7 @@ body.light-mode .skill-item img[alt="Notion"] {
     height: 100%;
     object-fit: contain;
     object-position: center;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease !important;
     transform: translateZ(0);
 }
 
@@ -948,11 +969,11 @@ body.light-mode .skill-item img[alt="Notion"] {
 }
 
 .project-card:hover .static-image {
-    opacity: 0;
+    opacity: 0 !important;
 }
 
 .project-card:hover .hover-video {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .video-ready .hover-video {
