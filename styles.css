@@ -807,6 +807,15 @@ body.light-mode .skill-item img[alt="Notion"] {
     content: url("./assets/svg/Notion-dark.svg");
 }
 
+/* Gestion du logo Roblox selon le thème */
+body:not(.light-mode) .game-link img[alt="Roblox"] {
+    content: url("./assets/svg/RobloxLogo-light.svg");
+}
+
+body.light-mode .game-link img[alt="Roblox"] {
+    content: url("./assets/svg/RobloxLogo-dark.svg");
+}
+
 /* ----- SECTION PROJECTS ----- */
 /* Structure des projets */
 .projects-grid {
