@@ -42,15 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
       themeIcon.className = isLightMode ? "fas fa-moon" : "fas fa-sun";
     };
 
-    // Chargement du thème sauvegardé
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const isLightMode = savedTheme ? savedTheme === "light" : !prefersDarkMode;
-
-    elements.body.classList.toggle("light-mode", isLightMode);
-    updateThemeIcon(isLightMode);
+    // Force le mode dark par défaut
+    elements.body.classList.remove("light-mode");
+    updateThemeIcon(false);
 
     // Changement de thème au clic
     elements.themeToggle.addEventListener("click", (e) => {
