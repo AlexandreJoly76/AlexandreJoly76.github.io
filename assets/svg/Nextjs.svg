@@ -1,0 +1,8 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path d="M16 48L48 16" stroke="#111" stroke-width="2"/>
+    <text x="32" y="40" text-anchor="middle" font-size="20" font-family="Arial, Helvetica, sans-serif" fill="#111">Next.js</text>
+  </g>
+</svg>
