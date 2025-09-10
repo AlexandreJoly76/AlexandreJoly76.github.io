@@ -108,7 +108,7 @@ body {
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
-    transition: var(--theme-transition);
+    /* transition supprimée pour éviter le scintillement du texte lors du changement de thème */
 }
 
 /* Éléments de base */
@@ -132,7 +132,7 @@ p { margin-bottom: 10px; }
 a {
     text-decoration: none;
     color: var(--text-primary);
-    transition: var(--transition);
+    /* transition supprimée pour éviter le scintillement du texte lors du changement de thème */
 }
 
 a:hover { color: var(--blue); }
@@ -790,7 +790,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: var(--transition);
+    /* transition supprimée pour éviter le scintillement du texte sous les icônes */
 }
 
 .skill-item img {
