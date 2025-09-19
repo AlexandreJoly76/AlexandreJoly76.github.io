@@ -1,0 +1,1 @@
+// Script principal migré en React. Voir hooks dans les composants.

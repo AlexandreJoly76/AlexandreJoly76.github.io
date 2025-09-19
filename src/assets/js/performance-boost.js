@@ -1,0 +1,1 @@
+// Ce script sera intégré via React si nécessaire.
