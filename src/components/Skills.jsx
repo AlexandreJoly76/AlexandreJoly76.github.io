@@ -15,6 +15,7 @@ import taigaIcon from '../assets/svg/Taiga.svg';
 import vscodeIcon from '../assets/svg/VSCode.svg';
 import robloxIcon from '../assets/svg/RobloxStudio.svg';
 import notionIcon from '../assets/svg/Notion-light.svg';
+import tailwindIcon from '../assets/svg/Tailwind.svg';
 
 const skillsData = [
   {
@@ -22,6 +23,7 @@ const skillsData = [
     items: [
       { name: 'HTML', icon: htmlIcon },
       { name: 'CSS', icon: cssIcon },
+      { name: 'Tailwind', icon: tailwindIcon },
       { name: 'JavaScript', icon: jsIcon },
       { name: 'React', icon: reactIcon },
     ],

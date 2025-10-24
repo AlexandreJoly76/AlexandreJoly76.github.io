@@ -7,6 +7,8 @@ import realtimeImg from '../assets/img/RealTime.png';
 import realtimeVideo from '../assets/video/realtime.mp4';
 import groupieImg from '../assets/img/groupieTracker.png';
 import groupieVideo from '../assets/video/groupie-tracker-video.mp4';
+import socialImg from '../assets/img/Mellow.webp';
+import socialVideo from '../assets/video/social-network-video.mp4';
 import portfolioImg from '../assets/img/Portefolio.png';
 import forumVideo from '../assets/video/forum.mp4';
 import githubIcon from '../assets/svg/Github.svg';
@@ -33,6 +35,17 @@ const courseProjects = [
   },
   {
     id: 'project2',
+    title: 'Mellow - Social Network',
+    img: socialImg,
+    video: socialVideo,
+    desc: 'A social network where you can create groups, invite people, and chat in real time.',
+    tags: ['Go', 'HTML/CSS/Tailwind', 'NextJS', 'SQLite', 'Docker'],
+    github: 'https://github.com/MellowProject/Mellow',
+    githubIcon: githubIcon,
+
+  },
+  {
+    id: 'project3',
     title: 'Make Your Game',
     img: makeyourgameImg,
     video: makeyourgameVideo,
@@ -42,7 +55,7 @@ const courseProjects = [
     githubIcon: githubIcon,
   },
   {
-    id: 'project3',
+    id: 'project4',
     title: 'Real Time Forum',
     img: realtimeImg,
     video: realtimeVideo,
@@ -52,7 +65,7 @@ const courseProjects = [
     githubIcon: githubIcon,
   },
   {
-    id: 'project4',
+    id: 'project5',
     title: 'Groupie Tracker',
     img: groupieImg,
     video: groupieVideo,
@@ -62,7 +75,7 @@ const courseProjects = [
     githubIcon: githubIcon,
   },
   {
-    id: 'project5',
+    id: 'project6',
     title: 'Personal Portfolio',
     img: portfolioImg,
     video: forumVideo,
