@@ -24,37 +24,37 @@ import jenkinsIcon from '../assets/svg/jenkins.svg';
 
 const skillsData = [
   {
-    category: 'Frontend',
+    category: 'Frontend & UI',
     items: [
-      { name: 'HTML', icon: htmlIcon },
-      { name: 'CSS', icon: cssIcon },
+      { name: 'HTML5', icon: htmlIcon },
+      { name: 'CSS3', icon: cssIcon },
       { name: 'Tailwind', icon: tailwindIcon },
       { name: 'Angular', icon: angularIcon },
       { name: 'JavaScript', icon: jsIcon },
       { name: 'React', icon: reactIcon },
       { name: 'Next.js', icon: nextjsIcon },
+      { name: 'Figma', icon: figmaIcon },
     ],
   },
   {
-    category: 'Backend',
+    category: 'Backend & Systems',
     items: [
       { name: 'Go', icon: goIcon },
       { name: 'Rails', icon: railsIcon },
       { name: 'Java', icon: javaIcon },
-      { name: 'Lua', icon: luaIcon },
       { name: 'Python', icon: pythonIcon },
       { name: 'Django', icon: djangoIcon },
+      { name: 'Lua', icon: luaIcon },
     ],
   },
   {
-    category: 'Outils',
+    category: 'DevOps & Tools',
     items: [
-      { name: 'GitHub', icon: githubIcon },
-      { name: 'Figma', icon: figmaIcon },
       { name: 'Docker', icon: dockerIcon },
       { name: 'Jenkins', icon: jenkinsIcon },
-      { name: 'Taiga', icon: taigaIcon },
+      { name: 'GitHub', icon: githubIcon },
       { name: 'VS Code', icon: vscodeIcon },
+      { name: 'Taiga', icon: taigaIcon },
       { name: 'Roblox Studio', icon: robloxIcon },
       { name: 'Notion', icon: notionIcon },
       { name: 'IntelliJ', icon: intellijIcon },
@@ -64,12 +64,10 @@ const skillsData = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="animate-section">
+    <section id="skills">
       <div className="section-header">
         <div className="section-title">
-          <span className="title-decoration"></span>
-          <h2>My <span className="highlight">Skills</span></h2>
-          <span className="title-decoration"></span>
+          <h2>Technical Arsenal</h2>
         </div>
       </div>
       <div className="skills-container">
@@ -79,7 +77,7 @@ const Skills = () => {
             <div className="skills-grid">
               {cat.items.map((item) => (
                 <div className="skill-item" key={item.name}>
-                  <img src={item.icon} alt={item.name} />
+                  <img src={item.icon} alt={item.name} loading="lazy" />
                   <span className="tech-name">{item.name}</span>
                 </div>
               ))}

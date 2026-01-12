@@ -3,44 +3,39 @@ import githubIcon from '../assets/svg/Githubsocial.svg';
 import linkedinIcon from '../assets/svg/LinkedInsocial.svg';
 import emailIcon from '../assets/svg/Emailsocial.svg';
 
-
-
 const Contact = () => {
   return (
     <section id="contact">
-      <div className="contact-container animate-section">
+      <div className="contact-container">
         <div className="contact-content">
           <div className="section-header">
             <div className="section-title">
-              <span className="title-decoration"></span>
-              <h2><span className="highlight">Contact</span> Me</h2>
-              <span className="title-decoration"></span>
+              <h2>Let's Collaborate</h2>
             </div>
           </div>
-          <p className="contact-intro">Let's connect and build something amazing together</p>
+          <p className="contact-intro">I'm currently looking for new opportunities. My inbox is always open.</p>
+          
           <div className="contact-cards">
-            <div className="social-cards-wrapper">
-              <a href="https://github.com/AlexandreJoly76" target="_blank" className="contact-card github-card">
-                <div className="contact-icon">
-                  <img src={githubIcon} alt="GitHub" />
-                </div>
-                <div className="contact-info">
-                  <h3>GitHub</h3>
-                  <p>Check out my code</p>
-                </div>
-                <span className="arrow-icon"><i className="fas fa-arrow-right"></i></span>
-              </a>
-              <a href="https://www.linkedin.com/in/alexandre-joly-90813733b/" target="_blank" className="contact-card linkedin-card">
-                <div className="contact-icon">
-                  <img src={linkedinIcon} alt="LinkedIn" />
-                </div>
-                <div className="contact-info">
-                  <h3>LinkedIn</h3>
-                  <p>Let's connect</p>
-                </div>
-                <span className="arrow-icon"><i className="fas fa-arrow-right"></i></span>
-              </a>
-            </div>
+            <a href="https://github.com/AlexandreJoly76" target="_blank" rel="noreferrer" className="contact-card">
+              <div className="contact-icon">
+                <img src={githubIcon} alt="GitHub" />
+              </div>
+              <div className="contact-info">
+                <h3>GitHub</h3>
+                <p>Browse Repositories</p>
+              </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/alexandre-joly-90813733b/" target="_blank" rel="noreferrer" className="contact-card">
+              <div className="contact-icon">
+                <img src={linkedinIcon} alt="LinkedIn" />
+              </div>
+              <div className="contact-info">
+                <h3>LinkedIn</h3>
+                <p>Professional Network</p>
+              </div>
+            </a>
+
             <a href="mailto:alexandre.joly.76300@gmail.com" className="contact-card email-card">
               <div className="contact-icon">
                 <img src={emailIcon} alt="Email" />
@@ -49,7 +44,6 @@ const Contact = () => {
                 <h3>Email</h3>
                 <p>alexandre.joly.76300@gmail.com</p>
               </div>
-              <span className="arrow-icon"><i className="fas fa-arrow-right"></i></span>
             </a>
           </div>
         </div>

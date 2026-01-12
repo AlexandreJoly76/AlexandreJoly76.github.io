@@ -1,15 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Header = () => {
-
-  // State pour menu mobile
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navElementsRef = useRef(null);
-
   // State pour le thème
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') || 'dark';
+      const savedTheme = localStorage.getItem('theme');
+      // Si un thème est sauvegardé, on l'utilise. Sinon, on force 'dark'.
+      return savedTheme ? savedTheme : 'dark';
     }
     return 'dark';
   });
@@ -17,18 +14,18 @@ const Header = () => {
   // Appliquer la classe sur le body
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      document.body.classList.toggle('light-mode', theme === 'light');
+      // Si le thème est 'light', on ajoute la classe et l'attribut.
+      // Sinon (dark), on nettoie tout pour utiliser les styles par défaut (qui sont dark).
+      if (theme === 'light') {
+        document.body.classList.add('light-mode');
+        document.body.setAttribute('data-theme', 'light');
+      } else {
+        document.body.classList.remove('light-mode');
+        document.body.removeAttribute('data-theme');
+      }
       localStorage.setItem('theme', theme);
     }
   }, [theme]);
-
-  // Gestion du menu mobile
-  const handleMenuToggle = () => {
-    setMenuOpen((open) => !open);
-    if (navElementsRef.current) {
-      navElementsRef.current.classList.toggle('active');
-    }
-  };
 
   // Gestion du switch de thème
   const handleThemeToggle = () => {
@@ -40,31 +37,43 @@ const Header = () => {
       <nav className="nav-container">
         <div className="logo">
           <a href="#" className="logo-link">
-            <span className="logo-text">
-              <span className="logo-primary">ALEXANDRE</span>
-              <span className="logo-secondary">JOLY</span>
-            </span>
+            AJ.
           </a>
         </div>
 
-        <div className={`menu-toggle${menuOpen ? ' active' : ''}`} id="menuToggle" onClick={handleMenuToggle}>
-          <div className="bar"></div>
-          <div className="bar"></div>
-          <div className="bar"></div>
+        <div className="nav-elements">
+          <ul className="nav-links">
+            <li>
+              <a href="#home" className="nav-item">
+                <i className="fas fa-home"></i>
+                <span className="nav-text">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="#skills" className="nav-item">
+                <i className="fas fa-code"></i>
+                <span className="nav-text">Skills</span>
+              </a>
+            </li>
+            <li>
+              <a href="#projects" className="nav-item">
+                <i className="fas fa-briefcase"></i>
+                <span className="nav-text">Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="nav-item">
+                <i className="fas fa-envelope"></i>
+                <span className="nav-text">Contact</span>
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <div className="nav-elements" ref={navElementsRef}>
-          <ul className="nav-links">
-            <li><a href="#home" className="nav-item active">Home</a></li>
-            <li><a href="#skills" className="nav-item">Skills</a></li>
-            <li><a href="#projects" className="nav-item">Projects</a></li>
-            <li><a href="#contact" className="nav-item">Contact</a></li>
-          </ul>
-          <div className="theme-switch">
-            <button id="themeToggle" aria-label="Change theme" onClick={handleThemeToggle}>
-              <i className={theme === 'light' ? 'fas fa-sun' : 'fas fa-moon'}></i>
+        <div className="theme-switch">
+            <button aria-label="Change theme" onClick={handleThemeToggle}>
+              {theme === 'light' ? <i className="fas fa-sun"></i> : <i className="fas fa-moon"></i>}
             </button>
-          </div>
         </div>
       </nav>
     </header>

@@ -1,35 +1,43 @@
+# Alexandre Joly — Portfolio 2026
 
-# Portfolio Alexandre Joly — React + Vite
+Modern, ethereal, and high-performance portfolio developed with **React 19** and **Vite**.
 
-Portfolio personnel développé en React et optimisé avec Vite.
+## ✨ Design System: "Ethereal Tech"
+- **Glassmorphism:** Deep backdrop blurs and subtle glass borders.
+- **Typography:** Space Grotesk (Display) and Inter (Body).
+- **Dark Mode First:** Deep void background with electric cyan and deep violet accents.
+- **Dynamic Island Navigation:** Bottom-floating bar on mobile, sleek top bar on desktop.
 
-## Structure du projet
-- Composants principaux : Header, Home, Skills, Projects, Contact, Footer
-- Assets dans `src/assets/` (img, svg, video, js, cv)
-- Fonts dans `src/fonts/`
+## 🚀 Key Features
+- **Auto-Animations:** Sequential CSS-only section entry (no JS overhead).
+- **Interactive Projects:** Auto-playing video previews on hover with seamless object-fit coverage.
+- **Technical Arsenal:** Categorized skill cloud with high-contrast icon badges.
+- **Responsive Layout:** Optimized for all devices, from ultra-wide monitors to handheld smartphones.
 
-## Fonctionnalités principales
-- Animations au scroll, lazy loading, navigation active, vidéos au hover
-- Optimisation des images et cartes projet (hooks React)
-- Gestion dynamique du background (fallback gradient)
+## 🛠 Tech Stack
+- **Frontend:** React 19
+- **Build Tool:** Vite
+- **Styling:** Modern CSS (Custom Variables, Flexbox Grid, Keyframes)
+- **Deployment:** GitHub Pages (via gh-pages)
 
-## Lancer le projet
+## 📦 Getting Started
+1. Install dependencies:
 ```bash
 npm install
+```
+2. Run development server:
+```bash
 npm run dev
 ```
+3. Build for production:
+```bash
+npm run build
+```
 
-## Extensions recommandées
-- Vite (antfu.vite)
-- ESLint (dbaeumer.vscode-eslint)
-- Prettier (esbenp.prettier-vscode)
+## 📂 Project Structure
+- `src/components/`: Core UI sections (Home, Skills, Projects, Contact, Header, Footer).
+- `src/App.css`: Central design system and responsive fixes.
+- `src/assets/`: Media assets including project videos, profile image, and social icons.
 
-## Bonnes pratiques
-- Utiliser les hooks React pour tout effet ou animation
-- Ne jamais manipuler le DOM directement hors hooks
-- Importer les assets via ES6 imports ou chemins relatifs
-
-## Pour toute modification
-- Ajouter les nouveaux assets dans `src/assets/`
-- Ajouter les nouveaux composants dans `src/components/`
-- Respecter la structure et les hooks existants
+---
+Designed with intention by Alexandre Joly.
