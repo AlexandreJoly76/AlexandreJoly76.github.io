@@ -16,6 +16,11 @@ import vscodeIcon from '../assets/svg/VSCode.svg';
 import robloxIcon from '../assets/svg/RobloxStudio.svg';
 import notionIcon from '../assets/svg/Notion-light.svg';
 import tailwindIcon from '../assets/svg/Tailwind.svg';
+import pythonIcon from '../assets/svg/python.svg';
+import djangoIcon from '../assets/svg/django.svg';
+import intellijIcon from '../assets/svg/intellij.svg';
+import angularIcon from '../assets/svg/angular.svg';
+import jenkinsIcon from '../assets/svg/jenkins.svg';
 
 const skillsData = [
   {
@@ -24,8 +29,10 @@ const skillsData = [
       { name: 'HTML', icon: htmlIcon },
       { name: 'CSS', icon: cssIcon },
       { name: 'Tailwind', icon: tailwindIcon },
+      { name: 'Angular', icon: angularIcon },
       { name: 'JavaScript', icon: jsIcon },
       { name: 'React', icon: reactIcon },
+      { name: 'Next.js', icon: nextjsIcon },
     ],
   },
   {
@@ -34,8 +41,9 @@ const skillsData = [
       { name: 'Go', icon: goIcon },
       { name: 'Rails', icon: railsIcon },
       { name: 'Java', icon: javaIcon },
-      { name: 'Next.js', icon: nextjsIcon },
       { name: 'Lua', icon: luaIcon },
+      { name: 'Python', icon: pythonIcon },
+      { name: 'Django', icon: djangoIcon },
     ],
   },
   {
@@ -44,10 +52,12 @@ const skillsData = [
       { name: 'GitHub', icon: githubIcon },
       { name: 'Figma', icon: figmaIcon },
       { name: 'Docker', icon: dockerIcon },
+      { name: 'Jenkins', icon: jenkinsIcon },
       { name: 'Taiga', icon: taigaIcon },
       { name: 'VS Code', icon: vscodeIcon },
       { name: 'Roblox Studio', icon: robloxIcon },
       { name: 'Notion', icon: notionIcon },
+      { name: 'IntelliJ', icon: intellijIcon },
     ],
   },
 ];

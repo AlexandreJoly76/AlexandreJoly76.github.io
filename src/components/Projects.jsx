@@ -9,8 +9,6 @@ import groupieImg from '../assets/img/groupieTracker.png';
 import groupieVideo from '../assets/video/groupie-tracker-video.mp4';
 import socialImg from '../assets/img/Mellow.webp';
 import socialVideo from '../assets/video/social-network-video.mp4';
-import portfolioImg from '../assets/img/Portefolio.png';
-import forumVideo from '../assets/video/forum.mp4';
 import githubIcon from '../assets/svg/Github.svg';
 import fetchcountriesImg from '../assets/img/fetchcountries.png';
 import fetchcountriesVideo from '../assets/video/fetchcountriesvideo.mp4';
@@ -18,7 +16,9 @@ import rolexImg from '../assets/img/rolex-racing-tycoon-frame.png';
 import rolexVideo from '../assets/video/rolex-racing-tycoon-video.mp4';
 import robloxIcon from '../assets/svg/RobloxLogo-light.svg';
 import spreadlabImg from '../assets/img/ecrandechargement.png';
+import EasyManage from '../assets/img/easymanage.png';
 import spreadlabVideo from '../assets/video/spreadlab.mp4';
+import EasyManageVideo from '../assets/video/EasyManage.mp4';
 import { useState, useEffect, useRef } from 'react';
 
 
@@ -74,16 +74,6 @@ const courseProjects = [
     github: 'https://github.com/AlexandreJoly76/GroupieTracker',
     githubIcon: githubIcon,
   },
-  {
-    id: 'project6',
-    title: 'Personal Portfolio',
-    img: portfolioImg,
-    video: forumVideo,
-    desc: 'Design and development of this modern portfolio to showcase my projects and skills with an intuitive and responsive interface.',
-    tags: ['HTML/CSS', 'JavaScript', 'UI/UX Design'],
-    github: 'https://github.com/AlexandreJoly76/AlexandreJoly76.github.io',
-    githubIcon: githubIcon,
-  },
 ];
 
 const personalProjects = [
@@ -117,6 +107,16 @@ const personalProjects = [
     game: 'https://www.roblox.com/games/118032810102771/Spread-Lab#!/about',
     robloxIcon: robloxIcon,
   },
+  {
+    id: 'personal4',
+    title: 'EasyManage',
+    img: EasyManage,
+    video: EasyManageVideo,
+    desc: 'A task management web application designed to register personal with name,jobs and salary.',
+    tags: ['Python', 'Django', 'HTML/CSS', 'JavaScript'],
+    github: 'https://github.com/AlexandreJoly76/EasyManager',
+    githubIcon: githubIcon,
+  }
 ];
 
 const Projects = () => {
