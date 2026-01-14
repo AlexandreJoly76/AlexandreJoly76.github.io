@@ -33,7 +33,7 @@ const Home = () => {
 
     const timer = setTimeout(handleTyping, isDeleting ? deletingSpeed : typingSpeed);
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, textIndex]);
+  }, [displayText, isDeleting, textIndex, words]);
 
   return (
     <section id="home">

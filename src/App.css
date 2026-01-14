@@ -165,11 +165,11 @@ section {
 .name-headline { 
     font-size: clamp(3.5rem, 8vw, 6.5rem); 
     line-height: 0.95; margin-bottom: 1.5rem; letter-spacing: -0.03em;
-    background: linear-gradient(to bottom right, var(--text-primary) 40%, rgba(255,255,255,0.2));
+    background: linear-gradient(135deg, var(--text-primary) 30%, rgba(255,255,255,0.4) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 [data-theme="light"] .name-headline {
-    background: linear-gradient(to bottom right, var(--text-primary) 40%, rgba(0,0,0,0.4));
+    background: linear-gradient(135deg, var(--text-primary) 30%, rgba(0,0,0,0.4) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
@@ -262,7 +262,7 @@ section {
 .scroll-indicator {
     position: absolute; bottom: 2rem; left: 50%; transform: translate3d(-50%, 0, 0);
     display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    opacity: 0.7; animation: fadeInUp 1s 1s forwards;
+    opacity: 0; animation: fadeInUpScroll 1s 1s forwards;
 }
 .mouse {
     width: 26px; height: 40px; border: 2px solid var(--text-secondary);
@@ -274,6 +274,10 @@ section {
     animation: scrollWheel 2s infinite;
 }
 @keyframes scrollWheel { 0% { top: 6px; opacity: 1; } 100% { top: 20px; opacity: 0; } }
+@keyframes fadeInUpScroll {
+    from { opacity: 0; transform: translate3d(-50%, 40px, 0); }
+    to { opacity: 0.7; transform: translate3d(-50%, 0, 0); }
+}
 
 
 /* --- SKILLS SECTION --- */
