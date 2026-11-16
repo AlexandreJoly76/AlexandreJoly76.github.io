@@ -31,7 +31,9 @@ export const translations = {
       categories: {
         frontend: 'Frontend & UI',
         backend: 'Backend & Systèmes',
-        devops: 'DevOps & Outils',
+        data: 'Bases de données',
+        devops: 'DevOps & Cloud',
+        tools: 'Outils',
       },
     },
     projects: {
@@ -95,7 +97,9 @@ export const translations = {
       categories: {
         frontend: 'Frontend & UI',
         backend: 'Backend & Systems',
-        devops: 'DevOps & Tools',
+        data: 'Databases',
+        devops: 'DevOps & Cloud',
+        tools: 'Tools',
       },
     },
     projects: {

@@ -340,7 +340,11 @@ section {
     border-color: var(--accent);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-.skill-item img { width: 22px; height: 22px; }
+.skill-item img { width: 22px; height: 22px; object-fit: contain; }
+/* Logos sombres inversés en thème sombre, logos clairs inversés en thème clair (teinte conservée) */
+.skill-item img.icon-dark,
+[data-theme="light"] .skill-item img.icon-light { filter: invert(1) hue-rotate(180deg); }
+[data-theme="light"] .skill-item img.icon-dark { filter: none; }
 
 
 /* --- PROJECTS SECTION --- */
