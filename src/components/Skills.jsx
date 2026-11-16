@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLang } from '../i18n/LangContext';
 import htmlIcon from '../assets/svg/HTML.svg';
 import cssIcon from '../assets/svg/CSS.svg';
 import jsIcon from '../assets/svg/Javascript.svg';
@@ -24,7 +25,7 @@ import jenkinsIcon from '../assets/svg/jenkins.svg';
 
 const skillsData = [
   {
-    category: 'Frontend & UI',
+    id: 'frontend',
     items: [
       { name: 'HTML5', icon: htmlIcon },
       { name: 'CSS3', icon: cssIcon },
@@ -37,7 +38,7 @@ const skillsData = [
     ],
   },
   {
-    category: 'Backend & Systems',
+    id: 'backend',
     items: [
       { name: 'Go', icon: goIcon },
       { name: 'Rails', icon: railsIcon },
@@ -48,7 +49,7 @@ const skillsData = [
     ],
   },
   {
-    category: 'DevOps & Tools',
+    id: 'devops',
     items: [
       { name: 'Docker', icon: dockerIcon },
       { name: 'Jenkins', icon: jenkinsIcon },
@@ -63,17 +64,18 @@ const skillsData = [
 ];
 
 const Skills = () => {
+  const { t } = useLang();
   return (
     <section id="skills">
       <div className="section-header">
         <div className="section-title">
-          <h2>Technical Arsenal</h2>
+          <h2>{t.skills.title}</h2>
         </div>
       </div>
       <div className="skills-container">
         {skillsData.map((cat) => (
-          <div className="skill-category" key={cat.category}>
-            <h3 className="category-title">{cat.category}</h3>
+          <div className="skill-category" key={cat.id}>
+            <h3 className="category-title">{t.skills.categories[cat.id]}</h3>
             <div className="skills-grid">
               {cat.items.map((item) => (
                 <div className="skill-item" key={item.name}>

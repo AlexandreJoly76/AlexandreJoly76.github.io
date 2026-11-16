@@ -1,19 +1,21 @@
 import React from 'react';
+import { useLang } from '../i18n/LangContext';
 import githubIcon from '../assets/svg/Githubsocial.svg';
 import linkedinIcon from '../assets/svg/LinkedInsocial.svg';
 import emailIcon from '../assets/svg/Emailsocial.svg';
 
 const Contact = () => {
+  const { t } = useLang();
   return (
     <section id="contact">
       <div className="contact-container">
         <div className="contact-content">
           <div className="section-header">
             <div className="section-title">
-              <h2>Let's Collaborate</h2>
+              <h2>{t.contact.title}</h2>
             </div>
           </div>
-          <p className="contact-intro">I'm currently looking for new opportunities. My inbox is always open.</p>
+          <p className="contact-intro">{t.contact.intro}</p>
           
           <div className="contact-cards">
             <a href="https://github.com/AlexandreJoly76" target="_blank" rel="noreferrer" className="contact-card">
@@ -22,7 +24,7 @@ const Contact = () => {
               </div>
               <div className="contact-info">
                 <h3>GitHub</h3>
-                <p>Browse Repositories</p>
+                <p>{t.contact.github}</p>
               </div>
             </a>
 
@@ -32,7 +34,7 @@ const Contact = () => {
               </div>
               <div className="contact-info">
                 <h3>LinkedIn</h3>
-                <p>Professional Network</p>
+                <p>{t.contact.linkedin}</p>
               </div>
             </a>
 

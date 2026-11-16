@@ -1,39 +1,11 @@
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import profilImg from '../assets/img/profil.png';
 import cvPdf from '../assets/cv/Cv.pdf';
+import Typewriter from './Typewriter';
+import { useLang } from '../i18n/LangContext';
 
 const Home = () => {
-  const [textIndex, setTextIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [displayText, setDisplayText] = useState('');
-  
-  const words = ["Developer", "Designer", "Creator"];
-  const typingSpeed = 150;
-  const deletingSpeed = 75;
-  const pauseTime = 2000;
-
-  useEffect(() => {
-    const handleTyping = () => {
-      const currentWord = words[textIndex % words.length];
-      
-      if (isDeleting) {
-        setDisplayText(currentWord.substring(0, displayText.length - 1));
-      } else {
-        setDisplayText(currentWord.substring(0, displayText.length + 1));
-      }
-
-      if (!isDeleting && displayText === currentWord) {
-        setTimeout(() => setIsDeleting(true), pauseTime);
-      } else if (isDeleting && displayText === '') {
-        setIsDeleting(false);
-        setTextIndex((prev) => prev + 1);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, isDeleting ? deletingSpeed : typingSpeed);
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, textIndex, words]);
+  const { lang, t } = useLang();
 
   return (
     <section id="home">
@@ -43,23 +15,21 @@ const Home = () => {
           <div className="intro-header">
             <h1 className="name-headline">Alexandre Joly</h1>
             <div className="role-container">
-              <span className="typewriter">Full-Stack <strong>{displayText}</strong></span>
+              <Typewriter key={lang} prefix={t.home.rolePrefix} words={t.home.roles} />
             </div>
           </div>
-          
+
           <div className="description">
-            <p>
-              Passionate about building dynamic and efficient web applications. I craft immersive digital experiences with modern technologies and a focus on performance.
-            </p>
-            <p>Currently open to apprenticeship opportunities to bring creative ideas to life.</p>
+            <p>{t.home.intro}</p>
+            <p>{t.home.search}</p>
           </div>
-          
+
           <div className="cta-buttons">
             <a href="#projects" className="btn-primary">
-              View Work
+              {t.home.viewWork}
             </a>
             <a href={cvPdf} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-              Resume
+              {t.home.resume}
             </a>
           </div>
 
@@ -89,7 +59,7 @@ const Home = () => {
         <div className="mouse">
           <div className="wheel"></div>
         </div>
-        <span>Scroll Down</span>
+        <span>{t.home.scroll}</span>
       </div>
     </section>
   );
