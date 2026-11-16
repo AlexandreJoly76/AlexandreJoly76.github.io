@@ -19,7 +19,7 @@ export const translations = {
       rolePrefix: 'Développeur ',
       roles: ['Full Stack', 'Back-end', 'Front-end'],
       intro:
-        "Développeur full stack en alternance depuis février 2026 et ancien chef d'atelier automobile, je conçois et maintiens des applications web métier, du back-end Ruby on Rails et Python jusqu'à l'interface, avec un vrai souci de la qualité et des performances.",
+        "Développeur full stack en alternance depuis février 2026 et ancien chef d'atelier automobile, je conçois et maintiens des applications web métier, du back-end jusqu'à l'interface, avec un vrai souci de la qualité et des performances.",
       search:
         "Je recherche une alternance dès septembre 2027 (3 semaines en entreprise / 1 semaine à l'école) pour un Bac+5 Chef de projet, architecture et Green IT.",
       viewWork: 'Voir mes projets',
@@ -83,7 +83,7 @@ export const translations = {
       rolePrefix: 'Full-Stack ',
       roles: ['Developer', 'Problem Solver', 'Team Player'],
       intro:
-        'Full-stack developer working as an apprentice since February 2026 and former automotive workshop manager, I build and maintain business web applications, from Ruby on Rails and Python back ends to the user interface, with a strong focus on quality and performance.',
+        'Full-stack developer working as an apprentice since February 2026 and former automotive workshop manager, I build and maintain business web applications, from the back end to the user interface, with a strong focus on quality and performance.',
       search:
         "I'm looking for an apprenticeship starting September 2027 (3 weeks at work / 1 week at school) for a Master's-level degree in project management, software architecture and Green IT.",
       viewWork: 'View Work',
